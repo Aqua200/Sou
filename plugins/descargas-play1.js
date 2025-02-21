@@ -86,11 +86,12 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     const JT = {
       contextInfo: {
         externalAdReply: {
-          title: 'ძᥱsᥴᥲrgᥲᥒძ᥆ ᥱs⍴ᥱrᥱ ᥙᥒ m᥆mᥱᥒ𝗍᥆...',
+          title: packname,
           body: dev,
           mediaType: 1,
           previewType: 0,
           mediaUrl: url,
+          sourceUrl: url,
           thumbnail: thumb,
           renderLargerThumbnail: true,
         },
@@ -106,10 +107,9 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
 
     } else if (command === 'play2' || command === 'ytv' || command === 'ytmp4') {
       let sources = [
-        `https://api.vreden.my.id/api/ytmp4?url=${url}`,
-        `https://api.davidcyriltech.my.id/download/ytmp4?url=${url}`,
-        `https://api.alyachan.dev/api/youtube?url=${url}&apikey=Gata-Dios`,
-        `https://delirius-apiofc.vercel.app/download/ytmp4?url=${url}`
+        `https://api.alyachan.dev/api/youtube?url=${url}&type=mp4&apikey=Gata-Dios`,
+        `https://delirius-apiofc.vercel.app/download/ytmp4?url=${url}`,
+        `https://api.vreden.my.id/api/ytmp4?url=${url}`
       ];
 
       let success = false;
