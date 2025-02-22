@@ -16,7 +16,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     let name = conn.getName(who);
     let name2 = conn.getName(m.sender);
    // m.react('⏳');
-    await conn.sendMessage(m.chat, { react: { text: '🔥', key: m.key } })
+    await conn.sendMessage(m.chat, { react: { text: '🍑', key: m.key } })
     let str = `${name2} Nalgueo a ${name}`.trim();
     if (m.isGroup){
     
