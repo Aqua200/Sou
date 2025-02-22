@@ -1,24 +1,14 @@
-import uploadImage from '../lib/uploadImage.js';
-import { sticker } from '../lib/sticker.js';
-
 let handler = async (m, { conn, usedPrefix }) => {
-    let who;
-    if (m.isGroup) {
-        who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : false;
-    } else {
-        who = m.chat;
-    }
-
-    if (!db.data.chats[m.chat].nsfw && m.isGroup) return m.reply('💔 *¡Lo siento, estos comandos están desactivados! NSFW*');
+    let who = m.isGroup ? (m.mentionedJid[0] || (m.quoted ? m.quoted.sender : false)) : m.chat;
     if (!who) throw 'Etiqueta o menciona a alguien';
 
-    let user = global.db.data.users[who];
+    if (!db.data.chats[m.chat].nsfw && m.isGroup) return m.reply('💔 *¡Lo siento, estos comandos están desactivados! NSFW*');
+
     let name = conn.getName(who);
     let name2 = conn.getName(m.sender);
 
     await conn.sendMessage(m.chat, { react: { text: '🍑', key: m.key } });
 
-    // Lista de videos
     let videos = [
         'https://qu.ax/dAgke.gif',
         'https://qu.ax/MOwKS.gif',
@@ -26,7 +16,6 @@ let handler = async (m, { conn, usedPrefix }) => {
     ];
     const video = videos[Math.floor(Math.random() * videos.length)];
 
-    // Frases personalizadas y aleatorias
     let frases = [
         `💜 ${name2} *nalgueó a* ${name} 💥`,
         `😏 ${name2} *le dejó las pompis rojas a* ${name} 🍑`,
@@ -36,13 +25,12 @@ let handler = async (m, { conn, usedPrefix }) => {
     ];
     let str = frases[Math.floor(Math.random() * frases.length)];
 
-    if (m.isGroup) {
-        conn.sendMessage(m.chat, { 
-            video: { url: video }, 
-            gifPlayback: true, 
-            caption: str, 
-            mentions: [m.sender, who] 
-        }, { quoted: m });
+    try {
+        let stickerGif = await sticker(false, video, global.packname, global.author);
+        await conn.sendMessage(m.chat, { sticker: stickerGif }, { quoted: m });
+    } catch (err) {
+        console.error('Error al generar sticker:', err);
+        conn.sendMessage(m.chat, { video: { url: video }, gifPlayback: true, caption: str, mentions: [m.sender, who] }, { quoted: m });
     }
 };
 
