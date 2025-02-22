@@ -19,11 +19,11 @@ let handler = async (m, { conn, usedPrefix }) => {
 
     // Lista de videos
     let videos = [
-        'https://telegra.ph/file/d4b85856b2685b5013a8a.mp4',
-        'https://telegra.ph/file/e278ca6dc7d26a2cfda46.mp4',
-        'https://telegra.ph/file/f830f235f844e30d22e8.mp4',
-        'https://telegra.ph/file/07fe0023525be2b2579f9.mp4',
-        'https://telegra.ph/file/99e036ac43a09e044a223.mp4'
+        'https://qu.ax/dAgke.gif',
+        'https://qu.ax/MOwKS.gif',
+        'https://qu.ax/pYQDb.gif',
+        '',
+        ''
     ];
     const video = videos[Math.floor(Math.random() * videos.length)];
 
