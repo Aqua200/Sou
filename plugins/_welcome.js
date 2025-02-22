@@ -1,7 +1,7 @@
-const { WAMessageStubType } = require('@whiskeysockets/baileys');
-const fetch = require('node-fetch');
+import { WAMessageStubType } from '@whiskeysockets/baileys';
+import fetch from 'node-fetch';
 
-module.exports = async function before(m, { conn, participants, groupMetadata }) {
+export async function before(m, { conn, participants, groupMetadata }) {
   if (!m.messageStubType || !m.isGroup) return true;
 
   let who = m.messageStubParameters[0];
@@ -54,4 +54,4 @@ module.exports = async function before(m, { conn, participants, groupMetadata })
   await conn.sendMessage(m.chat, { image: img, caption: selectedMessage, mentions: [who] });
 
   return true;
-};
+}
