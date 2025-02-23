@@ -12,11 +12,11 @@ export async function before(m, { conn, participants, groupMetadata }) {
 
   // Imágenes decorativas
   const images = [
-    'https://qu.ax/uVvOx.jpeg',
-    'https://qu.ax/RHADB.jpeg',
-    'https://qu.ax/Rndis.jpeg',
-    'https://qu.ax/pYVdH.jpeg',
-    'https://qu.ax/doymM.jpeg',
+    'https://qu.ax/RSrBo.jpg',
+    'https://qu.ax/YkCtt.jpg',
+    'https://qu.ax/sjymW.jpg',
+    'https://qu.ax/YQdTW.jpg',
+    'https://qu.ax/LDdfg.jpg',
   ];
 
   // Mensajes de bienvenida y despedida
