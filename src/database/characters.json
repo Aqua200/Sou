@@ -171,13 +171,27 @@
     "votes": 0
     },
     {
-    "id": "10",
+    "id": "12",
     "name": "Hina TACHIBANA",
     "gender": "Mujer",
     "value": "3100",
     "source": "Gakuen de Jikan yo Tomare",
     "img": [
         "https://qu.ax/rOORJ.jpeg"
+    ],
+    "vid": [],
+    "user": null,
+    "status": "Libre",
+    "votes": 0
+    },
+    {
+    "id": "13",
+    "name": "Yuuka ICHINOSE",
+    "gender": "Mujer",
+    "value": "3100",
+    "source": "Gakuen de Jikan yo Tomare",
+    "img": [
+        "https://qu.ax/kwCxe.jpeg"
     ],
     "vid": [],
     "user": null,
