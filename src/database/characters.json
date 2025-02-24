@@ -128,5 +128,19 @@
         "status": "Libre",
         "votes": 0
     },
+    {
+    "id": "6",
+    "name": "Haruka",
+    "gender": "Mujer",
+    "value": "3100",
+    "source": "Onee-chan wa Kyō mo Boku o Shiboru",
+    "img": [
+        "https://files.catbox.moe/unique123.jpeg"
+    ],
+    "vid": [],
+    "user": null,
+    "status": "Libre",
+    "votes": 0
+    },
     
 ]
