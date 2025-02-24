@@ -62,5 +62,22 @@
         "user": null,
         "status": "Libre",
         "votes": 0
-    }
+    },
+    
+    {
+        "id": "5",
+        "name": "Aria",
+        "gender": "Mujer",
+        "value": "3000",
+        "source": "Oneshota The Animation",
+        "img": [
+            "https://files.catbox.moe/ckkpyh.jpg",
+            "https://files.catbox.moe/6ivr0k.jpg",
+            "https://qu.ax/HBkWv.jpeg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
 ]
