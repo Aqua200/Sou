@@ -3,8 +3,10 @@ import fetch from 'node-fetch';
 
 export async function before(m, { conn, participants, groupMetadata }) { 
   try { 
-    if (!m.isGroup || !m.messageStubType) return;
+    if (!m.isGroup) return;
 
+    console.log('Tipo de mensaje stub:', m.messageStubType);
+    
     let chat = global.db?.data?.chats?.[m.chat];
     if (!chat?.welcome) return;
 
@@ -21,7 +23,6 @@ export async function before(m, { conn, participants, groupMetadata }) {
       'https://qu.ax/LDdfg.jpg',
     ];
 
-    // Verifica que las variables globales existan para evitar errores
     let welcomeMsg = global.welcom1 || "¡Bienvenido!";
     let byeMsg = global.welcom2 || "¡Nos vemos pronto!";
 
@@ -38,10 +39,15 @@ export async function before(m, { conn, participants, groupMetadata }) {
       ]
     };
 
-    let messageType =
-      m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_ADD ? 'welcome' :
-      (m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_REMOVE ||
-      m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_LEAVE) ? 'bye' : null;
+    let messageType = null;
+    
+    if (m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_ADD || 
+        (m.messageStubParameters && m.messageStubParameters.includes(who))) {
+      messageType = 'welcome';
+    } else if (m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_REMOVE || 
+               m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_LEAVE) {
+      messageType = 'bye';
+    }
 
     if (!messageType) return;
 
