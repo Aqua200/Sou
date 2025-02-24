@@ -17,13 +17,14 @@
     },
     {
         "id": "2",
-        "name": "Sakura",
+        "name": "Ayami",
         "gender": "Mujer",
-        "value": "1500",
-        "source": "Sakura Card Captor",
+        "value": "2000",
+        "source": "Ecchi na Onee-chan ni Shiboraretai",
         "img": [
-            "https://files.catbox.moe/abc123.jpg",
-            "https://files.catbox.moe/xyz456.jpeg"
+            "https://files.catbox.moe/8zfzur.jpeg",
+            "https://files.catbox.moe/3h94hq.jpeg",
+            "https://files.catbox.moe/56j61x.jpeg"
         ],
         "vid": [],
         "user": null,
