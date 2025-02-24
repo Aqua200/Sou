@@ -41,7 +41,7 @@
         "id": "3",
         "name": "Mikasa Ackerman",
         "gender": "Mujer",
-        "value": "100",
+        "value": "1200",
         "source": "Attack on Titan (Shingeki no Kyojin)",
         "img": [
             "https://files.catbox.moe/ob4m99.jpg",
@@ -60,7 +60,7 @@
         "id": "4",
         "name": "Izuku Midoriya",
         "gender": "Hombre",
-        "value": "100",
+        "value": "1100",
         "source": "My Hero Academia",
         "img": [
             "https://files.catbox.moe/nrolaj.jpg",
