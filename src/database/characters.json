@@ -3,7 +3,7 @@
         "id": "1",
         "name": "Megumi",
         "gender": "Mujer",
-        "value": "2000",
+        "value": "3000",
         "source": "Ecchi na Onee-chan ni Shiboraretai",
         "img": [
             "https://files.catbox.moe/9lpqdn.jpg",
@@ -19,7 +19,7 @@
         "id": "2",
         "name": "Ayami",
         "gender": "Mujer",
-        "value": "2000",
+        "value": "3000",
         "source": "Ecchi na Onee-chan ni Shiboraretai",
         "img": [
             "https://files.catbox.moe/8zfzur.jpeg",
@@ -35,8 +35,8 @@
         "id": "3",
         "name": "Sera no Haha",
         "gender": "Mujer",
-        "value": "2000",
-        "source": "Love Live! Sunshine!!",
+        "value": "3000",
+        "source": "Gaki ni Modotte Yarinaoshi",
         "img": [
             "https://files.catbox.moe/789def.jpg",
             "https://files.catbox.moe/ghi012.jpeg"
