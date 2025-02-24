@@ -80,4 +80,20 @@
         "status": "Libre",
         "votes": 0
     },
+    {
+        "id": "6",
+        "name": "Megumi",
+        "gender": "Mujer",
+        "value": "4200",
+        "source": "Ecchi na Onee-chan ni Shiboraretai",
+        "img": [
+            "https://files.catbox.moe/9lpqdn.jpg",
+            "https://files.catbox.moe/mr7ekp.jpeg",
+            "https://files.catbox.moe/ltfmyy.jpeg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
 ]
