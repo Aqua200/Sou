@@ -6,12 +6,13 @@ export async function before(m, { conn, participants, groupMetadata }) {
     if (!m.isGroup) return;
 
     console.log('Tipo de mensaje stub:', m.messageStubType);
-    
+    console.log('Parámetros del mensaje stub:', m.messageStubParameters);
+
     let chat = global.db?.data?.chats?.[m.chat];
     if (!chat?.welcome) return;
 
-    let who = m.messageStubParameters?.[0];
-    if (!who) return;
+    let who = m.messageStubParameters?.[0] || m.key.participant;
+    if (!who || !who.includes('@')) return; // Validación extra para evitar errores
 
     let taguser = `@${who.split('@')[0]}`;
 
