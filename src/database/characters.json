@@ -225,4 +225,20 @@
         "status": "Libre",
         "votes": 0
     }
+    {
+        "id": "16",
+        "name": "Aika Sano",
+        "gender": "Mujer",
+        "value": "4200",
+        "source": "Ane wa Yanmama Junyuu-chuu",
+        "img": [
+            "https://qu.ax/CGhnN.jpeg",
+            "https://qu.ax/DXJXT.jpeg",
+            "https://qu.ax/oyVHn.jpeg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
 ]
