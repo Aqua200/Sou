@@ -1,23 +1,21 @@
-import { WAMessageStubType } from '@whiskeysockets/baileys';
 import fetch from 'node-fetch';
 
-export async function before(m, { conn, groupMetadata }) { 
-  try { 
-    if (!m.isGroup || !m.messageStubParameters) return;
+export async function before(m, { conn, groupMetadata }) {
+  try {
+    if (!m.isGroup) return;
 
     let chat = global.db?.data?.chats?.[m.chat];
     if (!chat?.welcome) return;
 
-    let who = m.messageStubParameters[0] || m.key.participant;
+    let who = m.participant || m.messageStubParameters?.[0]; // Detección optimizada
     if (!who || !who.includes('@')) return;
 
     let taguser = `@${who.split('@')[0]}`;
 
-    // Mensajes de bienvenida y despedida
     let welcomeMsg = global.welcom1 || "¡Bienvenido!";
     let byeMsg = global.welcom2 || "¡Nos vemos pronto!";
 
-    let messages = {
+    const messages = {
       welcome: [
         `✿･ﾟ *¡Bienvenido!* ﾟ･✿\n✧ ${taguser} ha llegado a ${groupMetadata.subject}\n✧ ${welcomeMsg}\n✧ •(=^◡^=)• Disfruta tu estadía!\n✧ ✐ Usa *#help* para más info.`,
         `❀ こんにちは (Hola) ❀\n✧ ${taguser}, bienvenido a ${groupMetadata.subject}\n✧ ${welcomeMsg}\n✧ ⊹꒰｡• ﻌ •｡꒱⊹ ¡Pásala genial aquí!\n✧ ✐ Usa *#help* si necesitas ayuda.`,
@@ -38,27 +36,26 @@ export async function before(m, { conn, groupMetadata }) {
       'https://qu.ax/LDdfg.jpg',
     ];
 
-    // Determinar si es bienvenida o despedida
-    let messageType = 
-      m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_ADD ? 'welcome' :
-      (m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_REMOVE ||
-      m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_LEAVE) ? 'bye' : null;
+    // Detección mejorada de eventos de entrada y salida
+    let isWelcome = m.messageStubType === 'GROUP_PARTICIPANT_ADD' || (m.participant && !m.key.fromMe);
+    let isBye = m.messageStubType === 'GROUP_PARTICIPANT_REMOVE' || m.messageStubType === 'GROUP_PARTICIPANT_LEAVE';
 
-    if (!messageType) return;
+    if (!isWelcome && !isBye) return;
 
+    let messageType = isWelcome ? 'welcome' : 'bye';
     let selectedMessage = messages[messageType][Math.floor(Math.random() * messages[messageType].length)];
     let imageUrl = images[Math.floor(Math.random() * images.length)];
 
-    // Intentar obtener la foto de perfil
-    let img;
+    // Intentar obtener la foto de perfil sin retrasar el bot
+    let img = null;
     try {
       let url = await conn.profilePictureUrl(who, 'image');
       img = url ? await (await fetch(url)).buffer() : null;
-    } catch (err) {
+    } catch {
       img = null;
     }
 
-    // Si no hay foto de perfil, usa una imagen de respaldo
+    // Si no hay foto de perfil, usa una imagen de respaldo sin esperar
     if (!img) img = await (await fetch(imageUrl)).buffer();
 
     await conn.sendMessage(m.chat, { 
@@ -67,7 +64,7 @@ export async function before(m, { conn, groupMetadata }) {
       mentions: [who] 
     });
 
-  } catch (error) { 
-    console.error('Error en bienvenida/despedida:', error); 
-  } 
+  } catch (error) {
+    console.error('Error en bienvenida/despedida:', error);
+  }
 }
