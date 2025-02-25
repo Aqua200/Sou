@@ -241,4 +241,23 @@
         "status": "Libre",
         "votes": 0
     },
+       {
+        "id": "17",
+        "name": "Asuna Yuuki",
+        "gender": "Mujer",
+        "value": "100",
+        "source": "Sword Art Online",
+        "img": [
+            "https://qu.ax/DAlso.jpeg",
+            "https://qu.ax/SnEex.jpeg",
+            "https://qu.ax/XgAbD.jpeg"
+        ],
+        "vid": [
+            "https://files.catbox.moe/video1_asuna.mp4",
+            "https://files.catbox.moe/video2_asuna.mp4"
+        ],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
 ]
