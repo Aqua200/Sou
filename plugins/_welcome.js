@@ -1,17 +1,27 @@
+import { WAMessageStubType } from '@whiskeysockets/baileys';
 import fetch from 'node-fetch';
 
-export async function before(m, { conn, groupMetadata, isAdmin }) {
-  try {
-    if (!m.isGroup) return;
+export async function before(m, { conn, participants, groupMetadata }) { 
+  try { 
+    if (!m.isGroup || !m.messageStubType) return;
 
     let chat = global.db?.data?.chats?.[m.chat];
     if (!chat?.welcome) return;
 
-    let who = m.key.participant || (m.messageStubParameters && m.messageStubParameters[0]);
-    if (!who || !who.includes('@')) return;
+    let who = m.messageStubParameters?.[0];
+    if (!who) return;
 
     let taguser = `@${who.split('@')[0]}`;
 
+    const images = [
+      'https://qu.ax/RSrBo.jpg',
+      'https://qu.ax/YkCtt.jpg',
+      'https://qu.ax/sjymW.jpg',
+      'https://qu.ax/YQdTW.jpg',
+      'https://qu.ax/LDdfg.jpg',
+    ];
+
+    // Verifica que las variables globales existan para evitar errores
     let welcomeMsg = global.welcom1 || "¡Bienvenido!";
     let byeMsg = global.welcom2 || "¡Nos vemos pronto!";
 
@@ -28,35 +38,22 @@ export async function before(m, { conn, groupMetadata, isAdmin }) {
       ]
     };
 
-    let images = [
-      'https://qu.ax/RSrBo.jpg',
-      'https://qu.ax/YkCtt.jpg',
-      'https://qu.ax/sjymW.jpg',
-      'https://qu.ax/YQdTW.jpg',
-      'https://qu.ax/LDdfg.jpg',
-    ];
+    let messageType =
+      m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_ADD ? 'welcome' :
+      (m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_REMOVE ||
+      m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_LEAVE) ? 'bye' : null;
 
-    // Verifica si es entrada o salida
-    let isWelcome = m.messageStubType === 'GROUP_PARTICIPANT_ADD' || (!m.key.fromMe && !isAdmin);
-    let isBye = m.messageStubType === 'GROUP_PARTICIPANT_REMOVE' || (m.key.fromMe && isAdmin);
+    if (!messageType) return;
 
-    if (!isWelcome && !isBye) return;
-
-    let messageType = isWelcome ? 'welcome' : 'bye';
     let selectedMessage = messages[messageType][Math.floor(Math.random() * messages[messageType].length)];
-    let imageUrl = images[Math.floor(Math.random() * images.length)];
 
-    // Intentar obtener la foto de perfil sin bloquear la ejecución
-    let img = null;
+    let img;
     try {
       let url = await conn.profilePictureUrl(who, 'image');
-      img = url ? await (await fetch(url)).buffer() : null;
+      img = await (await fetch(url)).buffer();
     } catch {
-      img = null;
+      img = await (await fetch(images[Math.floor(Math.random() * images.length)])).buffer();
     }
-
-    // Si no hay foto de perfil, usa una imagen de respaldo sin retraso
-    if (!img) img = await (await fetch(imageUrl)).buffer();
 
     await conn.sendMessage(m.chat, { 
       image: img, 
@@ -64,7 +61,7 @@ export async function before(m, { conn, groupMetadata, isAdmin }) {
       mentions: [who] 
     });
 
-  } catch (error) {
-    console.error('Error en bienvenida/despedida:', error);
-  }
+  } catch (error) { 
+    console.error('Error en bienvenida/despedida:', error); 
+  } 
 }
