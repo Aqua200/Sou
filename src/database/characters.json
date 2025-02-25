@@ -289,4 +289,20 @@
         "status": "Libre",
         "votes": 0
     },
+{
+        "id": "20",
+        "name": "Rem",
+        "gender": "Mujer",
+        "value": "4200",
+        "source": "Re:Zero kara Hajimeru Isekai Seikatsu",
+        "img": [
+            "https://qu.ax/wHUsB.jpeg",
+            "https://qu.ax/RSzKA.jpeg",
+            "https://qu.ax/gxkod.jpeg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
 ]
