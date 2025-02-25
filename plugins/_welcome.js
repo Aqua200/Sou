@@ -1,13 +1,13 @@
 import fetch from 'node-fetch';
 
-export async function before(m, { conn, groupMetadata }) {
+export async function before(m, { conn, groupMetadata, isAdmin }) {
   try {
     if (!m.isGroup) return;
 
     let chat = global.db?.data?.chats?.[m.chat];
     if (!chat?.welcome) return;
 
-    let who = m.participant || m.messageStubParameters?.[0]; // Detección optimizada
+    let who = m.key.participant || (m.messageStubParameters && m.messageStubParameters[0]);
     if (!who || !who.includes('@')) return;
 
     let taguser = `@${who.split('@')[0]}`;
@@ -36,9 +36,9 @@ export async function before(m, { conn, groupMetadata }) {
       'https://qu.ax/LDdfg.jpg',
     ];
 
-    // Detección mejorada de eventos de entrada y salida
-    let isWelcome = m.messageStubType === 'GROUP_PARTICIPANT_ADD' || (m.participant && !m.key.fromMe);
-    let isBye = m.messageStubType === 'GROUP_PARTICIPANT_REMOVE' || m.messageStubType === 'GROUP_PARTICIPANT_LEAVE';
+    // Verifica si es entrada o salida
+    let isWelcome = m.messageStubType === 'GROUP_PARTICIPANT_ADD' || (!m.key.fromMe && !isAdmin);
+    let isBye = m.messageStubType === 'GROUP_PARTICIPANT_REMOVE' || (m.key.fromMe && isAdmin);
 
     if (!isWelcome && !isBye) return;
 
@@ -46,7 +46,7 @@ export async function before(m, { conn, groupMetadata }) {
     let selectedMessage = messages[messageType][Math.floor(Math.random() * messages[messageType].length)];
     let imageUrl = images[Math.floor(Math.random() * images.length)];
 
-    // Intentar obtener la foto de perfil sin retrasar el bot
+    // Intentar obtener la foto de perfil sin bloquear la ejecución
     let img = null;
     try {
       let url = await conn.profilePictureUrl(who, 'image');
@@ -55,7 +55,7 @@ export async function before(m, { conn, groupMetadata }) {
       img = null;
     }
 
-    // Si no hay foto de perfil, usa una imagen de respaldo sin esperar
+    // Si no hay foto de perfil, usa una imagen de respaldo sin retraso
     if (!img) img = await (await fetch(imageUrl)).buffer();
 
     await conn.sendMessage(m.chat, { 
