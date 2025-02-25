@@ -257,4 +257,20 @@
         "status": "Libre",
         "votes": 0
     },
+    {
+        "id": "18",
+        "name": "Erza Scarlet",
+        "gender": "Mujer",
+        "value": "4200",
+        "source": "Fairy Tail",
+        "img": [
+            "https://qu.ax/sjgxS.jpeg",
+            "https://qu.ax/rEbvp.jpeg",
+            "https://qu.ax/FcctG.jpeg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
 ]
