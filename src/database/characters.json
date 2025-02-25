@@ -273,4 +273,20 @@
         "status": "Libre",
         "votes": 0
     },
+    {
+        "id": "19",
+        "name": "Villhaze",
+        "gender": "Mujer",
+        "value": "4200",
+        "source": "The Vexations of a Shut-In Vampire Princess",
+        "img": [
+            "https://qu.ax/RiYlu.jpeg",
+            "https://qu.ax/oZGeb.jpeg",
+            "https://qu.ax/BVCnM.jpeg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
 ]
