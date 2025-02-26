@@ -354,7 +354,7 @@
         "votes": 0
     },
     {
-"id": "25",
+"id": "24",
 "name": "Origami TOBIICHI",
 "gender": "Mujer",
 "value": "4200",
@@ -363,6 +363,22 @@
 "https://qu.ax/gNFmk.jpeg",
 "https://qu.ax/kBAEY.jpeg",
 "https://qu.ax/SXlVJ.jpeg"
+],
+"vid": [],
+"user": null,
+"status": "Libre",
+"votes": 0
+},
+    {
+"id": "25",
+"name": "Kotori ITSUKA",
+"gender": "Mujer",
+"value": "4200",
+"source": "Date Alive",
+"img": [
+"https://qu.ax/SaZrJ.jpeg",
+"https://qu.ax/SphYX.jpeg",
+"https://qu.ax/pjDki.jpeg"
 ],
 "vid": [],
 "user": null,
