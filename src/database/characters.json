@@ -320,4 +320,21 @@
         "status": "Libre",
         "votes": 0
     }
+    
+    {
+        "id": "21",
+        "name": "Tooka YATOGAMI",
+        "gender": "Mujer",
+        "value": "4200",
+        "source": "",
+        "img": [
+            "https://qu.ax/vdBjH.jpeg",
+            "https://qu.ax/hcnzn.jpeg",
+            "https://qu.ax/Gribt.jpeg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
 ]
