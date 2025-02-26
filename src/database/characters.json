@@ -431,4 +431,20 @@
 "status": "Libre",
 "votes": 0
 },
+    {
+"id": "29",
+"name": "Nino Nakano",
+"gender": "Mujer",
+"value": "4200",
+"source": "The Quintessential Quintuplets",
+"img": [
+"",
+"",
+""
+],
+"vid": [],
+"user": null,
+"status": "Libre",
+"votes": 0
+},
 ]
