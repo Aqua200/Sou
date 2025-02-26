@@ -322,15 +322,31 @@
     }
     
     {
-        "id": "21",
+        "id": "22",
         "name": "Tooka YATOGAMI",
         "gender": "Mujer",
         "value": "4200",
-        "source": "",
+        "source": "Date Alive",
         "img": [
             "https://qu.ax/vdBjH.jpeg",
             "https://qu.ax/hcnzn.jpeg",
             "https://qu.ax/Gribt.jpeg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+{
+        "id": "23",
+        "name": "Shidou ITSUKA",
+        "gender": "Hombre",
+        "value": "4200",
+        "source": "Date Alive",
+        "img": [
+            "https://qu.ax/ismUZ.jpeg",
+            "https://qu.ax/mBeNY.jpeg",
+            "https://qu.ax/OOnRc.jpeg"
         ],
         "vid": [],
         "user": null,
