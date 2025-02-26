@@ -463,4 +463,19 @@
 "status": "Libre",
 "votes": 0
 },
+    {
+        "id": "31",
+        "name": "Rino MIZUSAWA",
+        "gender": "Mujer",
+        "value": "4200",
+        "source": "Imouto wa Gal Kawaii",
+        "img": [
+            "https://qu.ax/DvDQq.jpeg",
+            "https://qu.ax/tMCpk.jpeg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
 ]
