@@ -400,4 +400,19 @@
 "status": "Libre",
 "votes": 0
 },
+       {
+    "id": "27",
+    "name": "Rio SAKAGAMI",
+    "gender": "Mujer",
+    "value": "3900",
+    "source": "Anehame: Ore no Hatsukoi ga Jisshi na Wake ga Nai",
+    "img": [
+        "https://qu.ax/YLRvn.jpeg",
+        "https://qu.ax/hpXAZ.jpeg"
+    ],
+    "vid": [],
+    "user": null,
+    "status": "Libre",
+    "votes": 0
+   },
 ]
