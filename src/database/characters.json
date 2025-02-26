@@ -447,4 +447,20 @@
 "status": "Libre",
 "votes": 0
 },
+        {
+"id": "30",
+"name": "Shijou, Anri",
+"gender": "Mujer",
+"value": "4200",
+"source": "Hatsukoi Jikan",
+"img": [
+"https://qu.ax/UKEbp.jpeg",
+"https://qu.ax/FKmra.webp",
+"https://qu.ax/bJYmm.jpeg"
+],
+"vid": [],
+"user": null,
+"status": "Libre",
+"votes": 0
+},
 ]
