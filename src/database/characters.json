@@ -306,7 +306,7 @@
     },
     {
         "id": "21",
-        "name": "Izuku Midoriya"
+        "name": "Izuku Midoriya",
         "gender": "Hombre",
         "value": "4200",
         "source": "My Hero Academia",
@@ -319,5 +319,5 @@
         "user": null,
         "status": "Libre",
         "votes": 0
-    },
+    }
 ]
