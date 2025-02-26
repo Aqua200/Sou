@@ -156,4 +156,20 @@
         "status": "Libre",
         "votes": 0
     }
+    {
+        "id": "21",
+        "name": "Izuku Midoriya",
+        "gender": "Hombre",
+        "value": "4200",
+        "source": "My Hero Academia",
+        "img": [
+            "https://qu.ax/qShtW.jpeg",
+            "https://qu.ax/XjECU.jpeg",
+            "https://qu.ax/rEbka.jpeg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
 ]
