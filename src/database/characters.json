@@ -477,5 +477,20 @@
         "user": null,
         "status": "Libre",
         "votes": 0
+    },
+    {
+        "id": "32",
+        "name": "Riko",
+        "gender": "Mujer",
+        "value": "4200",
+        "source": "Imouto to Sono Yuujin ga Ero Sugite Ore no Kokan ga Yabai",
+        "img": [
+            "https://qu.ax/NjYJr.png",
+            "https://qu.ax/ytyol.jpeg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
     }
 ]
