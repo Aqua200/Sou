@@ -31,22 +31,21 @@
         "status": "Libre",
         "votes": 0
     },
-    {
-        "id": "3",
-        "name": "Sera no Haha",
-        "gender": "Mujer",
-        "value": "3900",
-        "source": "Gaki ni Modotte Yarinaoshi",
-        "img": [
-            "https://files.catbox.moe/ca2hwq.png",
-            "https://files.catbox.moe/582nyy.jpg",
-            "https://files.catbox.moe/op44sg.jpeg"
-        ],
-        "vid": [],
-        "user": null,
-        "status": "Libre",
-        "votes": 0
-    },
+   {
+    "id": "3",
+    "name": "Sera no Haha",
+    "gender": "Mujer",
+    "value": "3900",
+    "source": "Gaki ni Modotte Yarinaoshi",
+    "img": [
+        "https://files.catbox.moe/ca2hwq.png",
+        "https://files.catbox.moe/582nyy.jpg"
+    ],
+    "vid": [],
+    "user": null,
+    "status": "Libre",
+    "votes": 0
+   },
     {
         "id": "4",
         "name": "Yuriya KOMIYA",
