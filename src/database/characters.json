@@ -385,4 +385,20 @@
 "status": "Libre",
 "votes": 0
 },
+    {
+"id": "26",
+"name": "Kurumi TOKISAKI",
+"gender": "Mujer",
+"value": "4200",
+"source": "Date Alive",
+"img": [
+"https://qu.ax/NgTjm.jpeg",
+"https://qu.ax/EfljO.jpeg",
+"https://qu.ax/GgkQt.jpeg"
+],
+"vid": [],
+"user": null,
+"status": "Libre",
+"votes": 0
+},
 ]
