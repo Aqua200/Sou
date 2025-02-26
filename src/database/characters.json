@@ -415,4 +415,20 @@
     "status": "Libre",
     "votes": 0
    },
+    {
+"id": "28",
+"name": "Momo Deviluke",
+"gender": "Mujer",
+"value": "4200",
+"source": "To Love Ru",
+"img": [
+"https://qu.ax/xQTlG.jpeg",
+"https://qu.ax/OwLLx.jpeg",
+"https://qu.ax/ZVsLP.jpeg"
+],
+"vid": [],
+"user": null,
+"status": "Libre",
+"votes": 0
+},
 ]
