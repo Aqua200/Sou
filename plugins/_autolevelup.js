@@ -1,5 +1,5 @@
-const { canLevelUp, xpRange } = require('../lib/levelling.js');
-const db = require('../lib/database.js');
+import { canLevelUp, xpRange } from '../lib/levelling.js';
+import db from '../lib/database.js';
 
 let handler = async (m, { conn }) => {
     try {
@@ -25,10 +25,6 @@ let handler = async (m, { conn }) => {
             txt += `📅 *Fecha* : ${new Date().toLocaleString('es-ES')}\n\n`;
             txt += `✨ Cuanto más interactúes, más rápido subirás de nivel.`;
 
-            // Enviar sticker de felicitaciones
-            let stickerUrl = 'https://qu.ax/iKouo.jpeg'; // Cambiar por un sticker personalizado
-            await conn.sendMessage(m.chat, { sticker: { url: stickerUrl } }, { quoted: m });
-
             await conn.sendMessage(m.chat, { text: txt }, { quoted: m });
         } else {
             let users = Object.entries(global.db.data.users)
@@ -37,7 +33,6 @@ let handler = async (m, { conn }) => {
 
             let rank = users.findIndex(u => u.jid === who) + 1;
 
-            // Barra de progreso visual
             let progress = Math.floor(((user.exp - min) / xp) * 10);
             let bar = '█'.repeat(progress) + '▁'.repeat(10 - progress);
 
@@ -63,4 +58,4 @@ handler.command = ['nivel', 'lvl', 'level', 'levelup'];
 handler.register = true;
 handler.group = true;
 
-module.exports = handler;
+export default handler;
