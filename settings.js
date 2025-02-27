@@ -50,12 +50,12 @@ global.yukiJadibts = true
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.packname = '🦋𝐀𝐧𝐢𝐤𝐚-𝐒𝐭𝐞𝐥𝐥𝐚✨'
-global.botname = '🦋𝐀𝐧𝐢𝐤𝐚-𝐒𝐭𝐞𝐥𝐥𝐚✨'
-global.wm = '🦋𝐀𝐧𝐢𝐤𝐚-𝐒𝐭𝐞𝐥𝐥𝐚✨'
+global.packname = '❝꒰ 𝙷𝚊𝚔𝚊𝚛𝚒 🍧ˎˊ˗'
+global.botname = '❝꒰ 𝙷𝚊𝚔𝚊𝚛𝚒  🍧ˎˊ˗'
+global.wm = '❝꒰ 𝙷𝚊𝚔𝚊𝚛𝚒  🍧ˎˊ˗'
 global.author = '𝐌𝐚𝐝𝐞 𝐁𝐲 𝐢𝐚𝐦 𝐍𝐞𝐲𝐤𝐨𝐨𝐫'
 global.dev = '© 𝗽𝗼𝘄𝗲𝗿 𝗯𝘆 𝗡𝗲𝘆𝗸𝗼𝗼𝗿💜'
-global.textbot = '🦋𝐀𝐧𝐢𝐤𝐚-𝐒𝐭𝐞𝐥𝐥𝐚✨ • 𝐩𝐨𝐰𝐞𝐫 𝐛𝐲 𝐍𝐞𝐲𝐤𝐨𝐨𝐫'
+global.textbot = '❝꒰ 𝙷𝚊𝚔𝚊𝚛𝚒 🍧ˎˊ˗ • 𝐩𝐨𝐰𝐞𝐫 𝐛𝐲 𝐍𝐞𝐲𝐤𝐨𝐨𝐫'
 global.etiqueta = '𝐍𝐞𝐲𝐤𝐨𝐨𝐫💜'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
