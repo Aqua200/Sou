@@ -1078,4 +1078,42 @@
         "status": "Libre",
         "votes": 0
     },
+    {
+        "id": "42",
+        "name": "Light Yagami",
+        "gender": "Hombre",
+        "value": "100",
+        "source": "Death Note",
+        "img": [
+            "https://qu.ax/zZfvr.jpg",
+            "https://qu.ax/aWxKU.jpg",
+            "https://qu.ax/mrYwV.jpg"
+        ],
+        "vid": [
+            "https://files.catbox.moe/video1_light.mp4",
+            "https://files.catbox.moe/video2_light.mp4"
+        ],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+    {
+        "id": "43",
+        "name": "Rika Takanashi",
+        "gender": "Mujer",
+        "value": "100",
+        "source": "Chūnibyō Demo Koi ga Shitai!",
+        "img": [
+            "https://files.catbox.moe/hm4h1t.jpg",
+            "https://files.catbox.moe/ei3tsm.jpg",
+            "https://files.catbox.moe/kkms3p.jpg"
+        ],
+        "vid": [
+            "https://files.catbox.moe/video1_light.mp4",
+            "https://files.catbox.moe/video2_light.mp4"
+        ],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
 ]
