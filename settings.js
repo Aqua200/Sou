@@ -53,10 +53,10 @@ global.yukiJadibts = true
 global.packname = '❝꒰ 𝙷𝚊𝚔𝚊𝚛𝚒-𝙱𝚘𝚝 🍧ˎˊ˗'
 global.botname = '❝꒰ 𝙷𝚊𝚔𝚊𝚛𝚒-𝙱𝚘𝚝  🍧ˎˊ˗'
 global.wm = '❝꒰ 𝙷𝚊𝚔𝚊𝚛𝚒-𝙱𝚘𝚝  🍧ˎˊ˗'
-global.author = '𝐌𝐚𝐝𝐞 𝐁𝐲 𝐢𝐚𝐦 𝐍𝐞𝐲𝐤𝐨𝐨𝐫'
+global.author = '𝙼𝚊𝚍𝚎 𝚋𝚢 𝚒𝚊𝚖 𝙽𝚎𝚢𝚔𝚘𝚘𝚛💜'
 global.dev = '© 𝗽𝗼𝘄𝗲𝗿 𝗯𝘆 𝗡𝗲𝘆𝗸𝗼𝗼𝗿💜'
 global.textbot = '❝꒰ 𝙷𝚊𝚔𝚊𝚛𝚒-𝙱𝚘𝚝 🍧ˎˊ˗ • 𝐩𝐨𝐰𝐞𝐫 𝐛𝐲 𝐍𝐞𝐲𝐤𝐨𝐨𝐫'
-global.etiqueta = '𝐍𝐞𝐲𝐤𝐨𝐨𝐫💜'
+global.etiqueta = '𝙽𝚎𝚢𝚔𝚘𝚘𝚛💜'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
