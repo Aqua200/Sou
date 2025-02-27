@@ -59,13 +59,13 @@ let handler = async (m, { conn, args }) => {
     const userId = m.sender;
 
     if (args.length < 3) {
-        await conn.reply(m.chat, '《✧》Debes especificar el nombre del personaje, el precio y mencionar a quien quieres vendérselo.', m);
+        await conn.reply(m.chat, '《✧》Debes especificar el nombre o ID del personaje, el precio y mencionar a quien quieres vendérselo.', m);
         return;
     }
 
     const price = parseInt(args[args.length - 2]); // Penúltimo argumento como precio
     const mentionedUser = args[args.length - 1]; // Último argumento como comprador
-    const characterName = args.slice(0, -2).join(' ').toLowerCase().trim();
+    const characterIdentifier = args.slice(0, -2).join(' ').toLowerCase().trim(); // Puede ser nombre o ID
 
     if (isNaN(price) || price <= 0) {
         await conn.reply(m.chat, '《✧》El precio debe ser un número válido mayor a 0.', m);
@@ -84,14 +84,18 @@ let handler = async (m, { conn, args }) => {
         const buyerId = mentionedUser.replace('@', '');
         const buyerBalance = economy[buyerId] || 0;
 
-        const character = characters.find(c => c.name.toLowerCase() === characterName && c.user === userId);
+        // Buscar personaje por nombre o ID
+        const character = characters.find(c => 
+            (c.name.toLowerCase() === characterIdentifier || c.id === characterIdentifier) && c.user === userId
+        );
+
         if (!character) {
-            await conn.reply(m.chat, `《✧》*${characterName}* no está reclamado por ti.`, m);
+            await conn.reply(m.chat, `《✧》No se encontró el personaje *${characterIdentifier}* o no te pertenece.`, m);
             return;
         }
 
         if (buyerBalance < price) {
-            await conn.reply(m.chat, `《✧》${mentionedUser} no tiene suficiente dinero para comprar *${characterName}*.`, m);
+            await conn.reply(m.chat, `《✧》${mentionedUser} no tiene suficiente dinero para comprar *${character.name}*.`, m);
             return;
         }
 
@@ -118,7 +122,7 @@ let handler = async (m, { conn, args }) => {
     }
 };
 
-handler.help = ['vender <nombre del personaje> <precio> @usuario'];
+handler.help = ['vender <nombre del personaje o ID> <precio> @usuario'];
 handler.tags = ['anime'];
 handler.command = ['vender', 'sellchar'];
 handler.group = true;
