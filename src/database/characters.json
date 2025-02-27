@@ -1116,4 +1116,42 @@
         "status": "Libre",
         "votes": 0
     },
+    {
+        "id": "44",
+        "name": "Yui",
+        "gender": "Mujer",
+        "value": "100",
+        "source": "K-on",
+        "img": [
+            "https://files.catbox.moe/zsk6ae.jpg",
+            "https://files.catbox.moe/0woxlo.jpg",
+            "https://files.catbox.moe/0c5fm6.jpg"
+        ],
+        "vid": [
+            "https://files.catbox.moe/video1_light.mp4",
+            "https://files.catbox.moe/video2_light.mp4"
+        ],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+    {
+        "id": "45",
+        "name": "Thor",
+        "gender": "Hombre",
+        "value": "100",
+        "source": "Record of Ragnarok",
+        "img": [
+            "https://qu.ax/HjyuD.jpg",
+            "https://qu.ax/vVXKq.jpg",
+            "https://qu.ax/mgJNq.jpg"
+        ],
+        "vid": [
+            "https://files.catbox.moe/video1_light.mp4",
+            "https://files.catbox.moe/video2_light.mp4"
+        ],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
 ]
