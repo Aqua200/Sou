@@ -32,8 +32,8 @@ global.creador = 'Wa.me/584120346669'
 global.ofcbot = `${conn.user.jid.split('@')[0]}`
 global.asistencia = 'Wa.me/584120346669'
 global.namechannel = '❝꒰ 𝙷𝚊𝚔𝚊𝚛𝚒-𝚄𝚙𝚍𝚊𝚝𝚎  🍧ˎˊ˗'
-global.namechannel2 = 'ᥫ᭡ 🦋𝐀𝐧𝐢𝐤𝐚-𝐒𝐭𝐞𝐥𝐥𝐚✨ - 𝐚𝐯𝐢𝐬𝐨𝐬 ❀'
-global.namegrupo = '.•♫•♬• 🦋𝐀𝐧𝐢𝐤𝐚-𝐒𝐭𝐞𝐥𝐥𝐚✨ - 𝐁𝐨𝐭  •♬•♫•.'
+global.namechannel2 = '❝꒰ 𝙷𝚊𝚔𝚊𝚛𝚒-𝙰𝚟𝚒𝚜𝚘𝚜 🍧ˎˊ˗'
+global.namegrupo = '❝꒰ 𝙷𝚊𝚔𝚊𝚛𝚒-𝙱𝚘𝚝 🍧ˎˊ˗'
 global.namecomu = '✿:･✧ 𝐴𝑛𝑖𝑘𝑎 𝑆𝑡𝑒𝑙𝑙𝑎 𝑐𝑜𝑚𝑚𝑢𝑛𝑖𝑡𝑦  ✧･:✿'
 global.listo = '❮✦❯ *Aquí tienes... 🥺*'
 global.fotoperfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://files.catbox.moe/xr2m6u.jpg')
