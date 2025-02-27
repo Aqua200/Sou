@@ -25,7 +25,10 @@ let handler = async (m, { conn }) => {
             txt += `📅 *Fecha* : ${new Date().toLocaleString('es-ES')}\n\n`;
             txt += `✨ Cuanto más interactúes, más rápido subirás de nivel.`;
 
-            await conn.sendMessage(m.chat, { text: txt }, { quoted: m });
+            // Imagen personalizada (puedes cambiar la URL)
+            let imgUrl = 'https://qu.ax/iKouo.jpeg'; 
+
+            await conn.sendMessage(m.chat, { image: { url: imgUrl }, caption: txt }, { quoted: m });
         } else {
             let users = Object.entries(global.db.data.users)
                 .map(([key, value]) => ({ ...value, jid: key }))
