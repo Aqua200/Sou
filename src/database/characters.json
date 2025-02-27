@@ -1040,4 +1040,42 @@
         "status": "Libre",
         "votes": 0
     },
+    {
+        "id": "40",
+        "name": "Alucard",
+        "gender": "Hombre",
+        "value": "100",
+        "source": "Hellsing",
+        "img": [
+            "https://qu.ax/cSNzR.jpg",
+            "https://qu.ax/aVNHk.jpg",
+            "https://qu.ax/UVdOs.jpg"
+        ],
+        "vid": [
+            "https://files.catbox.moe/video1_alucard.mp4",
+            "https://files.catbox.moe/video2_alucard.mp4"
+        ],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+    {
+        "id": "41",
+        "name": "Benimaru Shinmon",
+        "gender": "Hombre",
+        "value": "100",
+        "source": "Fire Force",
+        "img": [
+            "https://qu.ax/gzgiR.jpg",
+            "https://qu.ax/mnpWt.jpg",
+            "https://qu.ax/oJEVq.jpg"
+        ],
+        "vid": [
+            "https://files.catbox.moe/video1_benimaru.mp4",
+            "https://files.catbox.moe/video2_benimaru.mp4"
+        ],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
 ]
