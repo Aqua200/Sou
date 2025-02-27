@@ -10,8 +10,8 @@ let handler = async (m, { conn, args }) => {
     let totalCommands = Object.values(global.plugins).filter((v) => v.help && v.tags).length;
     
     let txt = `
-H-Hola... Soy 
-*${botname}* 😊 Um... traje esta lista de comandos 
+H-Hola... Soy *${botname}* 
+😊 Um... traje esta lista de comandos 
 para ti ✨ 
 Espero que te ayude... Si necesitas algo, solo dime, 
 ¿sí? 💕
