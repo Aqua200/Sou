@@ -1,62 +1,14 @@
-import { promises as fs } from 'fs';
-
-const charactersFilePath = './src/database/characters.json';
-const haremFilePath = './src/database/harem.json';
-const economyFilePath = './src/database/economy.json'; // Archivo para almacenar dinero de usuarios
-
-async function loadCharacters() {
-    try {
-        const data = await fs.readFile(charactersFilePath, 'utf-8');
-        return JSON.parse(data);
-    } catch (error) {
-        throw new Error('No se pudo cargar el archivo characters.json.');
-    }
-}
-
-async function saveCharacters(characters) {
-    try {
-        await fs.writeFile(charactersFilePath, JSON.stringify(characters, null, 2), 'utf-8');
-    } catch (error) {
-        throw new Error('❀ No se pudo guardar el archivo characters.json.');
-    }
-}
-
-async function loadHarem() {
-    try {
-        const data = await fs.readFile(haremFilePath, 'utf-8');
-        return JSON.parse(data);
-    } catch (error) {
-        return [];
-    }
-}
-
-async function saveHarem(harem) {
-    try {
-        await fs.writeFile(haremFilePath, JSON.stringify(harem, null, 2));
-    } catch (error) {
-        throw new Error('❀ No se pudo guardar el archivo harem.json.');
-    }
-}
-
-async function loadEconomy() {
-    try {
-        const data = await fs.readFile(economyFilePath, 'utf-8');
-        return JSON.parse(data);
-    } catch (error) {
-        return {}; // Si no hay archivo, devolvemos un objeto vacío
-    }
-}
-
-async function saveEconomy(economy) {
-    try {
-        await fs.writeFile(economyFilePath, JSON.stringify(economy, null, 2), 'utf-8');
-    } catch (error) {
-        throw new Error('❀ No se pudo guardar el archivo economy.json.');
-    }
-}
-
 let handler = async (m, { conn, args }) => {
     const userId = m.sender;
+
+    // Comando '.waifus' para mostrar ayuda
+    if (args[0] === '.waifus') {
+        await conn.reply(m.chat, 
+            '《✧》Si no sabes cuál es el ID de tu personaje, solo pon .waifus.\n' +
+            'Este comando te mostrará los personajes disponibles y sus ID.\n' +
+            'Para vender un personaje usa: \n.vender <nombre o ID del personaje> <precio> @usuario', m);
+        return;
+    }
 
     if (args.length < 3) {
         await conn.reply(m.chat, '《✧》Debes especificar el nombre o ID del personaje, el precio y mencionar a quien quieres vendérselo.', m);
@@ -122,7 +74,7 @@ let handler = async (m, { conn, args }) => {
     }
 };
 
-handler.help = ['vender <nombre del personaje o ID> <precio> @usuario'];
+handler.help = ['vender <nombre del personaje o ID> <precio> @usuario', '.waifus'];
 handler.tags = ['anime'];
 handler.command = ['vender', 'sellchar'];
 handler.group = true;
