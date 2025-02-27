@@ -63,8 +63,8 @@ global.etiqueta = '𝙽𝚎𝚢𝚔𝚘𝚘𝚛💜'
 global.moneda = '¥enes'
 global.welcom1 = '❍ Edita Con El Comando setwelcome'
 global.welcom2 = '❍ Edita Con El Comando setbye'
-global.banner = 'https://qu.ax/zxHoR.jpg'
-global.avatar = 'https://qu.ax/ryZnk.jpg'
+global.banner = 'https://qu.ax/wgPsQ.jpeg'
+global.avatar = 'https://qu.ax/yqmPy.jpeg'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
