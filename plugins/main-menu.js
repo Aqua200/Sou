@@ -11,8 +11,7 @@ let handler = async (m, { conn, args }) => {
     
     let txt = `
 H-Hola... Soy *${botname}* 
-😊 Um... traje esta lista de comandos 
-para ti ✨ 
+😊 Um... traje esta lista de comandos para ti ✨ 
 Espero que te ayude... Si necesitas algo, solo dime, 
 ¿sí? 💕
 ╭┈ ↷
