@@ -1249,4 +1249,99 @@
         "status": "Libre",
         "votes": 0
     },
+        {
+        "id": "51",
+        "name": "Anri Teiri",
+        "gender": "Mujer",
+        "value": "100",
+        "source": "Blue lock",
+        "img": [
+            "https://qu.ax/FKgGa.jpg",
+            "https://qu.ax/LgQjt.jpg",
+            "https://qu.ax/LfufH.jpg"
+        ],
+        "vid": [
+            "https://files.catbox.moe/video1_light.mp4",
+            "https://files.catbox.moe/video2_light.mp4"
+        ],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+    {
+        "id": "52",
+        "name": "Hilda De Polaris",
+        "gender": "Mujer",
+        "value": "100",
+        "source": "Los Caballeros Del Zodiaco",
+        "img": [
+            "https://qu.ax/ZOtdp.jpg",
+            "https://qu.ax/ySNrp.jpg",
+            " https://qu.ax/osvBt.jpg"
+        ],
+        "vid": [
+            "https://files.catbox.moe/video1_light.mp4",
+            "https://files.catbox.moe/video2_light.mp4"
+        ],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+    {
+        "id": "53",
+        "name": "Apolo",
+        "gender": "Masculino",
+        "value": "100",
+        "source": "Record Of Ragnarok",
+        "img": [
+            "https://qu.ax/ZHUPK.jpg",
+            "https://qu.ax/rAXNH.jpg",
+            "https://qu.ax/xaPab.jpg"
+        ],
+        "vid": [
+            "https://files.catbox.moe/video1_light.mp4",
+            "https://files.catbox.moe/video2_light.mp4"
+        ],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+    {
+        "id": "54",
+        "name": "Meliodas Liones",
+        "gender": "Hombre",
+        "value": "100",
+        "source": "Nanatsu no Taizai",
+        "img": [
+             "https://qu.ax/Lfqrl.jpg",
+             "https://qu.ax/zyElr.jpg",
+             "https://qu.ax/NoovX.jpg"
+        ],
+        "vid": [
+            "https://files.catbox.moe/video1_light.mp4",
+            "https://files.catbox.moe/video2_light.mp4"
+        ],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+    {
+        "id": "55",
+        "name": "Giyuu Tomioka",
+        "gender": "Hombre",
+        "value": "100",
+        "source": "Kimetsu No Yaiba",
+        "img": [
+             "https://qu.ax/Jerqt.jpg",
+             "https://qu.ax/gmWPy.jpg",
+             "https://qu.ax/vgYUy.jpg"
+        ],
+        "vid": [
+            "https://files.catbox.moe/video1_light.mp4",
+            "https://files.catbox.moe/video2_light.mp4"
+        ],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
 ]
