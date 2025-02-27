@@ -1344,4 +1344,42 @@
         "status": "Libre",
         "votes": 0
     },
+    {
+        "id": "56",
+        "name": "Bakugou Katsuki",
+        "gender": "Hombre",
+        "value": "100",
+        "source": "Boku no hero",
+        "img": [
+            "https://qu.ax/DgOWT.jpg",
+            "https://qu.ax/PcGwH.jpg",
+            "https://qu.ax/eitUZ.jpg"
+        ],
+        "vid": [
+            "https://files.catbox.moe/video1_light.mp4",
+            "https://files.catbox.moe/video2_light.mp4"
+        ],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+    {
+        "id": "57",
+        "name": "Satoru Gojo",
+        "gender": "Hombre",
+        "value": "100",
+        "source": "Jujutsu kaisen",
+        "img": [
+            "https://qu.ax/kuWvK.jpg",
+            "https://qu.ax/zfsnp.jpg",
+            "https://qu.ax/oBnCU.jpg"
+        ],
+        "vid": [
+            "https://files.catbox.moe/video1_light.mp4",
+            "https://files.catbox.moe/video2_light.mp4"
+        ],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
 ]
