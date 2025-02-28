@@ -4,7 +4,7 @@ let handler = async (m, { conn }) => {
     let user = global.db.data.users[m.sender];
     if (!user) return;
 
-    if (user.pickaxedurability <= 0) {
+    if (!user.pickaxedurability || user.pickaxedurability <= 0) {
         return conn.reply(m.chat, '⚒️ Tu picota está rota. Repara o compra una nueva antes de seguir minando.', m);
     }
 
@@ -34,6 +34,9 @@ let handler = async (m, { conn }) => {
 
     let hasil = Math.floor(Math.random() * 1000);
 
+    let maxDurability = 100; // Durabilidad máxima de la picota
+    let durabilityPercentage = (user.pickaxedurability / maxDurability) * 100;
+
     let info = `${lugar.nombre}\n\n` +
         `🔹 *Exp*: ${hasil}\n` +
         `💰 *Monedas*: ${coin}\n` +
@@ -43,7 +46,7 @@ let handler = async (m, { conn }) => {
         `🪵 *Carbón*: ${coal}\n` +
         `🪨 *Piedra*: ${stone}\n` +
         `${diamond ? `💎 *Diamante*: ${diamond}\n` : ''}\n` +
-        `⚒️ *Durabilidad restante de la picota*: ${user.pickaxedurability - 30}`;
+        `⚒️ *Durabilidad restante de la picota*: ${isNaN(durabilityPercentage) ? 'Desconocida' : `${durabilityPercentage.toFixed(0)}%`}`;
 
     await conn.sendFile(m.chat, lugar.img, 'mineria.jpg', info, fkontak);
     await m.react('⛏️');
