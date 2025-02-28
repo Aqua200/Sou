@@ -1,4 +1,4 @@
-let cooldowns = {}; // Agrega esta línea para definir la variable cooldowns
+let cooldowns = {}; // Definir la variable cooldowns
 
 let handler = async (m, { conn }) => {
     let user = global.db.data.users[m.sender];
@@ -41,13 +41,13 @@ let handler = async (m, { conn }) => {
     }, 18000);
 
     setTimeout(() => {
-        conn.reply(m.chat, `@${m.sender.split('@s.whatsapp.net')[0]} *¡Duende detectado! 🧚‍♂️*`, null, { mentions: [m.sender] })
+        conn.reply(m.chat, `@${m.sender.split('@s.whatsapp.net')[0]} *¡Duendes detectados! 🧚‍♂️*`, null, { mentions: [m.sender] })
     }, 15000);
 
     // Enviar la imagen
     const imageUrl = "https://qu.ax/atpzr.jpeg"; // Reemplaza con la URL de la imagen que desees mostrar
     setTimeout(() => {
-        conn.sendMessage(m.chat, { image: { url: imageUrl }, caption: `¡Has cazado un duende y ganado *${toNum(rsl)}* yenes! Ahora tienes un total de *${toNum(user.coin + rsl)}* yenes. 💸\n💔 Te queda *${user.health}* de salud.` })
+        conn.sendMessage(m.chat, { image: { url: imageUrl }, caption: `¡Has cazado duendes y ganado *${toNum(rsl)}* yenes! Ahora tienes un total de *${toNum(user.coin + rsl)}* yenes. 💸\n💔 Te queda *${user.health}* de salud.` })
     }, 22000);
 
     // Actualiza el saldo de yenes en la base de datos
