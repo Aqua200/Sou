@@ -2,10 +2,10 @@ const handler = async (m, {conn}) => {
   const user = global.db.data.users[m.sender];
   
   // Tiempo de descanso entre caza
-  const tiempoRestante = global.db.data.users[m.sender].lastCaza + 2700000; // 45 minutos
+  const tiempoRestante = global.db.data.users[m.sender].lastCaza + 1500000; // 25 minutos
   
   // Si el usuario no ha descansado lo suficiente, mostramos el tiempo restante
-  if (new Date - global.db.data.users[m.sender].lastCaza < 2700000) {
+  if (new Date - global.db.data.users[m.sender].lastCaza < 1500000) {
     return conn.reply(m.chat, `Por favor descansa un momento para continuar cazando.⫹⫺ Tiempo restante: ${clockString(tiempoRestante - new Date())}`, m);
   }
 
