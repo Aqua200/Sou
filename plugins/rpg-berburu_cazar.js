@@ -1,3 +1,5 @@
+let cooldowns = {}; // Agrega esta línea para definir la variable cooldowns
+
 let handler = async (m, { conn }) => {
     let user = global.db.data.users[m.sender];
     const time = user.lastberburu + 60000; // 1 minuto de espera
@@ -8,6 +10,8 @@ let handler = async (m, { conn }) => {
     // Lógica para iniciar la caza
     let rsl = Math.floor(Math.random() * 500); // Yenes ganados
     let damage = Math.floor(Math.random() * 20); // Daño recibido (opcional)
+
+    // Establecer el tiempo de cooldown
     cooldowns[m.sender] = Date.now();
 
     // Verificar si el usuario tiene suficiente salud para continuar la caza
