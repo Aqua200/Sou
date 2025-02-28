@@ -1,62 +1,42 @@
-const handler = async (m, {conn}) => {
-  const user = global.db.data.users[m.sender];
+let cooldowns = {}
 
-  // Inicializar el campo de yenes si no existe
-  if (typeof user.yenes === 'undefined') {
-    user.yenes = 0;  // Si no existe, inicializamos los yenes a 0
+let handler = async (m, { conn }) => {
+  let user = global.db.data.users[m.sender]
+  let tiempo = 5 * 60 // Tiempo de espera entre acciones (en segundos)
+  if (cooldowns[m.sender] && Date.now() - cooldowns[m.sender] < tiempo * 1000) {
+    const tiempo2 = segundosAHMS(Math.ceil((cooldowns[m.sender] + tiempo * 1000 - Date.now()) / 1000))
+    conn.reply(m.chat, `Debes esperar *${tiempo2}* para cazar otro duende.`, m)
+    return
   }
 
-  // Definimos el duende común
-  const duendeComun = {
-    name: 'Duende Común',
-    yen: 10,
-    rarity: 'Común',
-    image: 'https://qu.ax/atpzr.jpeg',  // Aquí pones la URL de la imagen
-  };
+  // Lógica para cazar un duende y ganar yenes
+  let rsl = Math.floor(Math.random() * 500) // Yenes ganados
+  cooldowns[m.sender] = Date.now()
+  await conn.reply(m.chat, `¡Has cazado un duende y ganado *${toNum(rsl)}* yenes! 💸`, m)
 
-  // Mostramos el resultado de la caza
-  const resultado = `
-  *✧ Resultado de la caza de duendes ✧*
-  Has cazado un ${duendeComun.name} (${duendeComun.rarity}) y obtuviste ${duendeComun.yen} yenes!
-  `;
-
-  // Enviamos el resultado junto con la imagen del duende
-  conn.sendMessage(m.chat, {image: {url: duendeComun.image}, caption: resultado}, {mentions: [m.sender]});
-
-  // Sumamos los yenes ganados a la cuenta del usuario
-  user.yenes += duendeComun.yen;
-
-  // Verificamos que los yenes se sumen correctamente
-  console.log(`Yenes actuales de ${m.sender}: ${user.yenes}`);
-
-  // Actualizamos el tiempo de la última caza
-  user.lastCaza = new Date * 1;
-
-  setTimeout(() => {
-    conn.reply(m.chat, `@${m.sender.split('@s.whatsapp.net')[0]} *¡Duende detectado! 🧚‍♂️*`, null, {mentions: [m.sender]});
-  }, 1800);
-
-  setTimeout(() => {
-    conn.reply(m.chat, `@${m.sender.split('@s.whatsapp.net')[0]} *¡Preparación para la caza! 🗡️*`, null, {mentions: [m.sender]});
-  }, 1500);
-
-  setTimeout(() => {
-    conn.reply(m.chat, `@${m.sender.split('@s.whatsapp.net')[0]} *¡Objetivo en radar! 🧚‍♂️🎯*`, m, m.mentionedJid ? {mentions: [m.sender]} : {});
-  }, 0);
-};
-
-// Función para convertir el tiempo en formato HH:MM:SS
-function clockString(ms) {
-  const h = Math.floor(ms / 3600000);
-  const m = Math.floor(ms / 60000) % 60;
-  const s = Math.floor(ms / 1000) % 60;
-  return [h, m, s].map((v) => v.toString().padStart(2, 0) ).join(':');
+  user.coin += rsl // Aumenta los yenes del usuario
 }
 
-handler.help = ['cazar'];
-handler.tags = ['rpg'];
-handler.command = ['cazar', 'hunt'];
-handler.group = true;
-handler.register = true;
+handler.help = ['cazar', 'cazar_duende', 'cazar_duendes']
+handler.tags = ['rpg']
+handler.command = ['cazar', 'hunt', 'cazar_duende', 'duende']
+handler.group = true
+handler.register = true
 
-export default handler;
+export default handler
+
+function toNum(number) {
+  if (number >= 1000 && number < 1000000) {
+    return (number / 1000).toFixed(1) + 'k'
+  } else if (number >= 1000000) {
+    return (number / 1000000).toFixed(1) + 'M'
+  } else {
+    return number.toString()
+  }
+}
+
+function segundosAHMS(segundos) {
+  let minutos = Math.floor((segundos % 3600) / 60)
+  let segundosRestantes = segundos % 60
+  return `${minutos} minutos y ${segundosRestantes} segundos`
+}
