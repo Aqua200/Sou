@@ -12,9 +12,19 @@ let handler = async (m, { conn }) => {
   // Lógica para cazar un duende y ganar yenes
   let rsl = Math.floor(Math.random() * 500) // Yenes ganados
   cooldowns[m.sender] = Date.now()
-  await conn.reply(m.chat, `¡Has cazado un duende y ganado *${toNum(rsl)}* yenes! 💸`, m)
 
-  user.coin += rsl // Aumenta los yenes del usuario
+  // Enviar los mensajes secuenciales
+  let username = m.pushName || "Usuario"
+  await conn.reply(m.chat, `${username} *¡Objetivo en radar! 🧚‍♂️🎯*`, m)
+  await conn.reply(m.chat, `@⁨${m.sender}⁩ *¡Preparación para la caza! 🗡️*`, m)
+  await conn.reply(m.chat, `@${m.sender} *¡Duende detectado! 🧚‍♂️*`, m)
+
+  // Enviar la imagen
+  const imageUrl = "URL_DE_TU_IMAGEN" // Reemplaza con la URL de la imagen que desees mostrar
+  await conn.sendImage(m.chat, imageUrl, `¡Has cazado un duende y ganado *${toNum(rsl)}* yenes! Ahora tienes un total de *${toNum(user.coin + rsl)}* yenes. 💸`, m)
+
+  // Aumenta los yenes del usuario
+  user.coin += rsl
 }
 
 handler.help = ['cazar', 'cazar_duende', 'cazar_duendes']
