@@ -8,17 +8,24 @@ let handler = async (m, { conn }) => {
         return conn.reply(m.chat, '⚒️ Tu picota está rota. Repara o compra una nueva antes de seguir minando.', m);
     }
 
-    let coin = pickRandom([20, 5, 7, 8, 88, 40, 50, 70, 90, 999, 300]);
+    let lugares = [
+        { nombre: "⛏️ Cueva", img: "https://qu.ax/JguPr.jpg", probabilidad: 25, minerales: { coin: [10, 50], iron: [5, 20], gold: [2, 10], coal: [10, 50], stone: [300, 800] } },
+        { nombre: "🌋 Volcán", img: "https://qu.ax/0hJzF.jpg", probabilidad: 25, minerales: { coin: [30, 90], iron: [15, 40], gold: [10, 50], coal: [30, 100], stone: [700, 4000] } },
+        { nombre: "🏚️ Mina abandonada", img: "https://qu.ax/5D7Gn.jpg", probabilidad: 50, minerales: { coin: [50, 120], iron: [20, 50], gold: [15, 40], coal: [30, 100], stone: [600, 2000] } },
+        { nombre: "🌲 Bosque subterráneo", img: "https://qu.ax/hT3dj.jpg", probabilidad: 50, minerales: { coin: [40, 100], iron: [15, 40], gold: [10, 30], coal: [20, 80], stone: [500, 1500] } },
+        { nombre: "🌀 Dimensión oscura", img: "https://qu.ax/8TvZJ.jpg", probabilidad: 50, minerales: { coin: [70, 200], iron: [30, 60], gold: [20, 60], coal: [50, 150], stone: [1000, 5000] } }
+    ];
+
+    let lugar = pickByProbability(lugares);
+
+    let coin = pickRandomRange(lugar.minerales.coin);
+    let iron = pickRandomRange(lugar.minerales.iron);
+    let gold = pickRandomRange(lugar.minerales.gold);
+    let coal = pickRandomRange(lugar.minerales.coal);
+    let stone = pickRandomRange(lugar.minerales.stone);
     let emerald = pickRandom([1, 5, 7, 8]);
-    let iron = pickRandom([5, 6, 7, 9, 10, 15, 20, 25, 30]);
-    let gold = pickRandom([20, 5, 7, 8, 88, 40, 50]);
-    let coal = pickRandom([20, 5, 7, 8, 88, 40, 50, 80, 70, 60, 100]);
-    let stone = pickRandom([200, 500, 700, 800, 900, 4000, 300]);
+    let diamond = Math.random() < 0.05 ? pickRandom([1, 2, 3]) : 0;
 
-    // Probabilidad de encontrar diamante
-    let diamond = Math.random() < 0.05 ? pickRandom([1, 2, 3]) : 0; 
-
-    let img = 'https://qu.ax/JguPr.jpg';
     let time = user.lastmiming + 600000;
 
     if (new Date() - user.lastmiming < 600000) {
@@ -27,9 +34,9 @@ let handler = async (m, { conn }) => {
 
     let hasil = Math.floor(Math.random() * 1000);
 
-    let info = `⛏️ *Te has adentrado en la cueva y encontraste:*\n\n` +
+    let info = `${lugar.nombre}\n\n` +
         `🔹 *Exp*: ${hasil}\n` +
-        `💰 *${moneda}*: ${coin}\n` +
+        `💰 *Monedas*: ${coin}\n` +
         `💎 *Esmeralda*: ${emerald}\n` +
         `🔩 *Hierro*: ${iron}\n` +
         `🏅 *Oro*: ${gold}\n` +
@@ -38,7 +45,7 @@ let handler = async (m, { conn }) => {
         `${diamond ? `💎 *Diamante*: ${diamond}\n` : ''}\n` +
         `⚒️ *Durabilidad restante de la picota*: ${user.pickaxedurability - 30}`;
 
-    await conn.sendFile(m.chat, img, 'mineria.jpg', info, fkontak);
+    await conn.sendFile(m.chat, lugar.img, 'mineria.jpg', info, fkontak);
     await m.react('⛏️');
 
     user.health -= 50;
@@ -70,9 +77,26 @@ handler.group = true;
 
 export default handler;
 
+// Función para seleccionar un número aleatorio dentro de un rango
+function pickRandomRange(range) {
+    return Math.floor(Math.random() * (range[1] - range[0] + 1)) + range[0];
+}
+
 // Función para seleccionar valores aleatorios
 function pickRandom(list) {
     return list[Math.floor(Math.random() * list.length)];
+}
+
+// Función para seleccionar un lugar basado en su probabilidad
+function pickByProbability(items) {
+    let total = items.reduce((sum, item) => sum + item.probabilidad, 0);
+    let random = Math.random() * total;
+    let sum = 0;
+
+    for (let item of items) {
+        sum += item.probabilidad;
+        if (random < sum) return item;
+    }
 }
 
 // Función para convertir milisegundos a tiempo legible
