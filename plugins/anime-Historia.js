@@ -65,7 +65,7 @@ let handler = async (m, { conn }) => {
                       `🌟 *Pero eso nunca los detuvo. Cada encuentro era un suspiro robado.*\n` +
                       `💋 *Y en la penumbra, sus labios se encontraron en un beso eterno.* 💫\n\n` +
                       `╚══════💜 *𝑭𝒊𝒏 𝒅𝒆 𝑳𝒂 𝑯𝒊𝒔𝒕𝒐𝒓𝒊𝒂* 💜══════╝`,
-                media: 'https://telegra.ph/file/f66bcaf1effc14e077663.jpg' // Imagen para esta historia
+                media: 'https://qu.ax/oqFWB.jpeg' // Imagen para esta historia
             },
             {
                 text: `╔══════💖✨ *𝑯𝒊𝒔𝒕𝒐𝒓𝒊𝒂 𝒅𝒆 𝑨𝒎𝒐𝒓* ✨💖══════╗\n\n` +
