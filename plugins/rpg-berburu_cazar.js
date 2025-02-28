@@ -1,13 +1,5 @@
 const handler = async (m, {conn}) => {
   const user = global.db.data.users[m.sender];
-  
-  // Tiempo de descanso entre caza
-  const tiempoRestante = global.db.data.users[m.sender].lastCaza + 1500000; // 25 minutos
-  
-  // Si el usuario no ha descansado lo suficiente, mostramos el tiempo restante
-  if (new Date - global.db.data.users[m.sender].lastCaza < 1500000) {
-    return conn.reply(m.chat, `Por favor descansa un momento para continuar cazando.⫹⫺ Tiempo restante: ${clockString(tiempoRestante - new Date())}`, m);
-  }
 
   // Definimos el duende común
   const duendeComun = {
@@ -29,7 +21,7 @@ const handler = async (m, {conn}) => {
   // Sumamos los yenes ganados a la cuenta del usuario
   global.db.data.users[m.sender].yenes += duendeComun.yen;
 
-  // Actualizamos el tiempo de la última caza
+  // Actualizamos el tiempo de la última caza (si ya no quieres el tiempo, puedes quitar esta línea también)
   user.lastCaza = new Date * 1;
 
   setTimeout(() => {
