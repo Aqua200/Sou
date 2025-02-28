@@ -13,8 +13,10 @@ let handler = async (m, { conn }) => {
   let rsl = Math.floor(Math.random() * 500) // Yenes ganados
   cooldowns[m.sender] = Date.now()
 
-  // Enviar los mensajes secuenciales
-  let username = m.pushName || "Usuario"
+  // Obtener nombre del usuario o su número si no tiene nombre
+  let username = m.pushName || m.sender
+
+  // Enviar los mensajes secuenciales con el nombre o número del usuario
   await conn.reply(m.chat, `${username} *¡Objetivo en radar! 🧚‍♂️🎯*`, m)
   await conn.reply(m.chat, `@⁨${m.sender}⁩ *¡Preparación para la caza! 🗡️*`, m)
   await conn.reply(m.chat, `@${m.sender} *¡Duende detectado! 🧚‍♂️*`, m)
