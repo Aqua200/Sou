@@ -2,10 +2,6 @@ let cooldowns = {}
 
 let handler = async (m, { conn }) => {
   let user = global.db.data.users[m.sender]
-  const time = user.lastberburu + 2700000; // 45 minutos de espera
-  if (new Date - user.lastberburu < 2700000) {
-    return conn.reply(m.chat, `Por favor, descansa un momento para seguir cazando.\n\n⫹⫺ Tiempo restante: ${clockString(time - new Date())}`, m)
-  }
 
   // Lógica para iniciar la caza
   let rsl = Math.floor(Math.random() * 500) // Yenes ganados
@@ -53,11 +49,4 @@ function toNum(number) {
   } else {
     return number.toString()
   }
-}
-
-function clockString(ms) {
-  let seconds = Math.floor(ms / 1000)
-  let minutes = Math.floor(seconds / 60)
-  seconds = seconds % 60
-  return `${minutes} minutos y ${seconds} segundos`
 }
