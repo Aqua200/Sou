@@ -2,31 +2,39 @@ let cooldowns = {}
 
 let handler = async (m, { conn }) => {
   let user = global.db.data.users[m.sender]
-  let tiempo = 5 * 60 // Tiempo de espera entre acciones (en segundos)
-  if (cooldowns[m.sender] && Date.now() - cooldowns[m.sender] < tiempo * 1000) {
-    const tiempo2 = segundosAHMS(Math.ceil((cooldowns[m.sender] + tiempo * 1000 - Date.now()) / 1000))
-    conn.reply(m.chat, `Debes esperar *${tiempo2}* para cazar otro duende.`, m)
-    return
+  const time = user.lastberburu + 2700000; // 45 minutos de espera
+  if (new Date - user.lastberburu < 2700000) {
+    return conn.reply(m.chat, `Por favor, descansa un momento para seguir cazando.\n\n⫹⫺ Tiempo restante: ${clockString(time - new Date())}`, m)
   }
 
-  // Lógica para cazar un duende y ganar yenes
+  // Lógica para iniciar la caza
   let rsl = Math.floor(Math.random() * 500) // Yenes ganados
   cooldowns[m.sender] = Date.now()
 
-  // Obtener nombre del usuario o su número si no tiene nombre
-  let username = m.pushName || m.sender
+  // Obtener el nombre del usuario o su número si no tiene nombre
+  let username = m.pushName || m.sender.split('@')[0]
 
-  // Enviar los mensajes secuenciales con el nombre o número del usuario
-  await conn.reply(m.chat, `${username} *¡Objetivo en radar! 🧚‍♂️🎯*`, m)
-  await conn.reply(m.chat, `@⁨${m.sender}⁩ *¡Preparación para la caza! 🗡️*`, m)
-  await conn.reply(m.chat, `@${m.sender} *¡Duende detectado! 🧚‍♂️*`, m)
+  // Enviar mensajes secuenciales con el nombre o número del usuario
+  setTimeout(() => {
+    conn.reply(m.chat, `@${m.sender.split('@s.whatsapp.net')[0]} *¡Objetivo en radar! 🧚‍♂️🎯*`, null, { mentions: [m.sender] })
+  }, 20000);
+
+  setTimeout(() => {
+    conn.reply(m.chat, `@${m.sender.split('@s.whatsapp.net')[0]} *¡Preparación para la caza! 🗡️*`, null, { mentions: [m.sender] })
+  }, 18000);
+
+  setTimeout(() => {
+    conn.reply(m.chat, `@${m.sender.split('@s.whatsapp.net')[0]} *¡Duende detectado! 🧚‍♂️*`, null, { mentions: [m.sender] })
+  }, 15000);
 
   // Enviar la imagen
   const imageUrl = "URL_DE_TU_IMAGEN" // Reemplaza con la URL de la imagen que desees mostrar
-  await conn.sendImage(m.chat, imageUrl, `¡Has cazado un duende y ganado *${toNum(rsl)}* yenes! Ahora tienes un total de *${toNum(user.coin + rsl)}* yenes. 💸`, m)
+  setTimeout(() => {
+    conn.sendImage(m.chat, imageUrl, `¡Has cazado un duende y ganado *${toNum(rsl)}* yenes! Ahora tienes un total de *${toNum(user.coin + rsl)}* yenes. 💸`, m)
+  }, 22000);
 
-  // Aumenta los yenes del usuario
-  user.coin += rsl
+  // Actualiza el tiempo de la última caza
+  user.lastberburu = new Date * 1;
 }
 
 handler.help = ['cazar', 'cazar_duende', 'cazar_duendes']
@@ -47,8 +55,9 @@ function toNum(number) {
   }
 }
 
-function segundosAHMS(segundos) {
-  let minutos = Math.floor((segundos % 3600) / 60)
-  let segundosRestantes = segundos % 60
-  return `${minutos} minutos y ${segundosRestantes} segundos`
+function clockString(ms) {
+  let seconds = Math.floor(ms / 1000)
+  let minutes = Math.floor(seconds / 60)
+  seconds = seconds % 60
+  return `${minutes} minutos y ${seconds} segundos`
 }
