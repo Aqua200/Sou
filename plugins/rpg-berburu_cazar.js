@@ -33,6 +33,9 @@ let handler = async (m, { conn }) => {
         conn.sendMessage(m.chat, { image: { url: imageUrl }, caption: `¡Has cazado un duende y ganado *${toNum(rsl)}* yenes! Ahora tienes un total de *${toNum(user.coin + rsl)}* yenes. 💸` })
     }, 22000);
 
+    // Actualiza el saldo de yenes en la base de datos
+    user.coin += rsl;
+
     // Actualiza el tiempo de la última caza
     user.lastberburu = new Date * 1;
 }
