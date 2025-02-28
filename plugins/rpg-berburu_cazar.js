@@ -2,8 +2,8 @@ let cooldowns = {}; // Definir la variable cooldowns
 
 let handler = async (m, { conn }) => {
     let user = global.db.data.users[m.sender];
-    const time = user.lastberburu + 60000; // 1 minuto de espera
-    if (new Date - user.lastberburu < 60000) { // Verifica si el tiempo de espera no ha pasado
+    const time = user.lastberburu + 300000; // 5 minutos de espera
+    if (new Date - user.lastberburu < 300000) { // Verifica si el tiempo de espera no ha pasado
         return conn.reply(m.chat, `Por favor, descansa un momento para seguir cazando.\n\n⫹⫺ Tiempo restante: ${clockString(time - new Date())}`, m)
     }
 
