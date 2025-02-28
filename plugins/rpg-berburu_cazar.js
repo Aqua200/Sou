@@ -6,7 +6,7 @@ const handler = async (m, {conn}) => {
     name: 'Duende Común',
     yen: 10,
     rarity: 'Común',
-    image: 'https://ejemplo.com/duende_comun.jpg',  // Aquí pones la URL de la imagen
+    image: 'https://qu.ax/atpzr.jpeg',  // Aquí pones la URL de la imagen
     vida: 100  // Vida inicial del jugador
   };
 
