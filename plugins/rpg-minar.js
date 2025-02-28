@@ -13,7 +13,7 @@ let handler = async (m, { conn }) => {
         { nombre: "🌋 Volcán", img: "https://qu.ax/CDdWW.jpeg", probabilidad: 25, minerales: { coin: [30, 90], iron: [15, 40], gold: [10, 50], coal: [30, 100], stone: [700, 4000] } },
         { nombre: "🏚️ Mina abandonada", img: "https://qu.ax/tZvvf.jpeg", probabilidad: 50, minerales: { coin: [50, 120], iron: [20, 50], gold: [15, 40], coal: [30, 100], stone: [600, 2000] } },
         { nombre: "🌲 Bosque subterráneo", img: "https://qu.ax/FzCtg.jpeg", probabilidad: 50, minerales: { coin: [40, 100], iron: [15, 40], gold: [10, 30], coal: [20, 80], stone: [500, 1500] } },
-        { nombre: "🌀 Dimensión oscura", img: "https://qu.ax/8TvZJ.jpg", probabilidad: 50, minerales: { coin: [70, 200], iron: [30, 60], gold: [20, 60], coal: [50, 150], stone: [1000, 5000] } }
+        { nombre: "🌀 Dimensión oscura", img: "https://qu.ax/OLKnB.jpeg", probabilidad: 50, minerales: { coin: [70, 200], iron: [30, 60], gold: [20, 60], coal: [50, 150], stone: [1000, 5000] } }
     ];
 
     let lugar = pickByProbability(lugares);
