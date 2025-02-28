@@ -16,7 +16,7 @@ let handler = async (m, { conn }) => {
 
     let name = conn.getName(who);
     let name2 = conn.getName(m.sender);
-    let botName = 'Anika Dm'; // Nombre de la bot
+    let botName = 'hakari'; // Nombre de la bot
     let botJid = conn.user.jid; // JID de la bot
     m.react('💖');
 
