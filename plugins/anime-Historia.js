@@ -73,7 +73,7 @@ let handler = async (m, { conn }) => {
                       `💞 *A través de los ojos, encontraron un amor profundo e inquebrantable.*\n` +
                       `💋 *El beso fue el cierre perfecto de una historia que no necesitaba palabras...* 🕊️\n\n` +
                       `╚══════🌷 *𝑭𝒊𝒏 𝒅𝒆 𝑳𝒂 𝑯𝒊𝒔𝒕𝒐𝒓𝒊𝒂* 🌷══════╝`,
-                media: 'https://telegra.ph/file/ba841c699e9e039deadb3.jpg' // Imagen para esta historia
+                media: 'https://qu.ax/oqFWB.jpeg' // Imagen para esta historia
             }
         ];
 
