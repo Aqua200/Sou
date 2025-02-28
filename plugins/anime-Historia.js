@@ -31,7 +31,7 @@ let handler = async (m, { conn }) => {
                 `💋 *Pero por ahora, solo queda un tierno beso entre la humanidad y la tecnología.* 🤖💕\n\n` +
                 `╚══════💜 *𝑭𝒊𝒏 𝒅𝒆 𝑳𝒂 𝑯𝒊𝒔𝒕𝒐𝒓𝒊𝒂* 💜══════╝`;
 
-        mediaUrl = 'https://telegra.ph/file/6497758a122357bc5bbb7.jpg'; // Imagen exclusiva para la bot
+        mediaUrl = 'https://qu.ax/MkqyE.jpeg'; // Imagen exclusiva para la bot
     } else {
         // Historias aleatorias para miembros con URLs únicas de imágenes
         let stories = [
