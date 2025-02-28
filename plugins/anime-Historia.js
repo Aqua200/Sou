@@ -49,7 +49,7 @@ let handler = async (m, { conn }) => {
                       `🌟 *Cada palabra, cada sonrisa y cada gesto los unió más y más.*\n` +
                       `💋 *Y sellaron su amor con un beso inolvidable...* 💍✨\n\n` +
                       `╚══════🌹 *𝑭𝒊𝒏 𝒅𝒆 𝑳𝒂 𝑯𝒊𝒔𝒕𝒐𝒓𝒊𝒂* 🌹══════╝`,
-                media: 'https://telegra.ph/file/8c0f70ed2bfd95a125993.jpg' // Imagen para esta historia
+                media: 'https://qu.ax/ZKyLJ.jpeg' // Imagen para esta historia
             },
             {
                 text: `╔══════❤️✨ *𝑼𝒏 𝑹𝒐𝒎𝒂𝒏𝒄𝒆 𝑭𝒆𝒓𝒗𝒐𝒓𝒐𝒔𝒐* ✨❤️══════╗\n\n` +
