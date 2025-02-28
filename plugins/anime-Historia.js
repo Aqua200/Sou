@@ -41,7 +41,7 @@ let handler = async (m, { conn }) => {
                       `💞 *Sus almas se encontraron y desde entonces, nada pudo separarlos.*\n` +
                       `💋 *Finalmente, sus labios se encontraron en un beso lleno de amor...* 💖\n\n` +
                       `╚══════🌟 *𝑭𝒊𝒏 𝒅𝒆 𝑳𝒂 𝑯𝒊𝒔𝒕𝒐𝒓𝒊𝒂* 🌟══════╝`,
-                media: 'https://telegra.ph/file/ba841c699e9e039deadb3.jpg' // Imagen para esta historia
+                media: 'https://qu.ax/yTaFM.jpeg' // Imagen para esta historia
             },
             {
                 text: `╔══════💘✨ *𝑨𝒎𝒐𝒓 𝑰𝒏𝒆𝒔𝒑𝒆𝒓𝒂𝒅𝒐* ✨💘══════╗\n\n` +
