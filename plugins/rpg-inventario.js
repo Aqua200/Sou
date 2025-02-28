@@ -12,26 +12,46 @@ let handler = async (m, { conn, usedPrefix }) => {
     let user = global.db.data.users[who];
     let name = conn.getName(who);
 
+    // Inicialización de los datos si no existen
+    user.coin = user.coin || 0;
+    user.bank = user.bank || 0;
+    user.emerald = user.emerald || 0;
+    user.iron = user.iron || 0;
+    user.gold = user.gold || 0;
+    user.coal = user.coal || 0;
+    user.stone = user.stone || 0;
+    user.exp = user.exp || 0;
+    user.health = user.health || 100;
+    user.diamond = user.diamond || 0;
+    user.candies = user.candies || 0;
+    user.gifts = user.gifts || 0;
+    user.joincount = user.joincount || 0;
+    user.premium = user.premium || false;
+    user.lastAdventure = user.lastAdventure || null;
+
     let premium = user.premium ? '✅' : '❌';
 
     let text = `╭━〔 Inventario de ${name} 〕⬣\n` +
-               `┋ 💸 *${moneda} en Cartera:* ${user.coin || 0}\n` +  
-               `┋ 🏦 *${moneda} en Banco:* ${user.bank || 0}\n` + 
-               `┋ ♦️ *Esmeraldas:* ${user.emerald || 0}\n` + 
-               `┋ 🔩 *Hierro:* ${user.iron || 0}\n` +  
-               `┋ 🏅 *Oro:* ${user.gold || 0}\n` + 
-               `┋ 🕋 *Carbón:* ${user.coal || 0}\n` +  
-               `┋ 🪨 *Piedra:* ${user.stone || 0}\n` +  
-               `┋ ✨ *Experiencia:* ${user.exp || 0}\n` + 
-               `┋ ❤️ *Salud:* ${user.health || 100}\n` + 
-               `┋ 💎 *Diamantes:* ${user.diamond || 0}\n` +   
-               `┋ 🍬 *Dulces:* ${user.candies || 0}\n` + 
-               `┋ 🎁 *Regalos:* ${user.gifts || 0}\n` + 
-               `┋ 🎟️ *Tokens:* ${user.joincount || 0}\n` +  
+               `┋ 💸 *${moneda} en Cartera:* ${user.coin}\n` +  
+               `┋ 🏦 *${moneda} en Banco:* ${user.bank}\n` + 
+               `┋ ♦️ *Esmeraldas:* ${user.emerald}\n` + 
+               `┋ 🔩 *Hierro:* ${user.iron}\n` +  
+               `┋ 🏅 *Oro:* ${user.gold}\n` + 
+               `┋ 🕋 *Carbón:* ${user.coal}\n` +  
+               `┋ 🪨 *Piedra:* ${user.stone}\n` +  
+               `┋ ✨ *Experiencia:* ${user.exp}\n` + 
+               `┋ ❤️ *Salud:* ${user.health}\n` + 
+               `┋ 💎 *Diamantes:* ${user.diamond}\n` +   
+               `┋ 🍬 *Dulces:* ${user.candies}\n` + 
+               `┋ 🎁 *Regalos:* ${user.gifts}\n` + 
+               `┋ 🎟️ *Tokens:* ${user.joincount}\n` +  
                `┋ ⚜️ *Premium:* ${premium}\n` + 
                `┋ ⏳ *Última Aventura:* ${user.lastAdventure ? moment(user.lastAdventure).fromNow() : 'Nunca'}\n` + 
                `┋ 📅 *Fecha:* ${new Date().toLocaleString('id-ID')}\n` +
                `╰━━━━━━━━━━━━⬣`;
+
+    // Si 'fkontak' no está definido, define un objeto vacío
+    let fkontak = {};
 
     await conn.sendFile(m.chat, img, 'yuki.jpg', text, fkontak);
 }
