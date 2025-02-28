@@ -2,9 +2,13 @@ let handler = async (m, { conn, args }) => {
   try {
     let id = args?.[0]?.match(/\d+\-\d+@g.us/)?.[0] || m.chat;
 
-    const participantesUnicos = Object.values(conn.chats[id]?.messages || {})
-      .map((item) => item.key?.participant)
-      .filter((k) => k && k.includes("@")); // Filtra valores válidos
+    const participantesUnicos = [
+      ...new Set(
+        Object.values(conn.chats[id]?.messages || {})
+          .map((item) => item.key?.participant)
+          .filter((k) => k && k.includes("@"))
+      ),
+    ]; // Filtra valores válidos y elimina duplicados
 
     const listaEnLinea =
       participantesUnicos.length > 0
