@@ -1,6 +1,14 @@
 const handler = async (m, {conn}) => {
   const user = global.db.data.users[m.sender];
   
+  // Tiempo de descanso entre caza
+  const tiempoRestante = global.db.data.users[m.sender].lastCaza + 2700000; // 45 minutos
+  
+  // Si el usuario no ha descansado lo suficiente, mostramos el tiempo restante
+  if (new Date - global.db.data.users[m.sender].lastCaza < 2700000) {
+    return conn.reply(m.chat, `Por favor descansa un momento para continuar cazando.⫹⫺ Tiempo restante: ${clockString(tiempoRestante - new Date())}`, m);
+  }
+
   // Definimos el duende común
   const duendeComun = {
     name: 'Duende Común',
@@ -49,17 +57,9 @@ const handler = async (m, {conn}) => {
   // Sumamos los yenes ganados a la cuenta del usuario
   global.db.data.users[m.sender].yenes += duendeComun.yen;
 
-  // Tiempo de descanso entre caza
-  const tiempoRestante = global.db.data.users[m.sender].lastCaza + 2700000; // 45 minutos
-  
-  if (new Date - global.db.data.users[m.sender].lastCaza < 2700000) {
-    return conn.reply(m.chat, `Por favor descansa un momento para continuar cazando.⫹⫺ Tiempo restante: ${clockString(tiempoRestante - new Date())}`, m);
-  }
+  // Actualizamos el tiempo de la última caza
+  user.lastCaza = new Date * 1;
 
-  setTimeout(() => {
-    conn.reply(m.chat, resultado, m);
-  }, 2000);
-  
   setTimeout(() => {
     conn.reply(m.chat, `@${m.sender.split('@s.whatsapp.net')[0]} *¡Duende detectado! 🧚‍♂️*`, null, {mentions: [m.sender]});
   }, 1800);
@@ -71,8 +71,6 @@ const handler = async (m, {conn}) => {
   setTimeout(() => {
     conn.reply(m.chat, `@${m.sender.split('@s.whatsapp.net')[0]} *¡Objetivo en radar! 🧚‍♂️🎯*`, m, m.mentionedJid ? {mentions: [m.sender]} : {});
   }, 0);
-  
-  user.lastCaza = new Date * 1; // Actualizamos el tiempo de la última caza
 };
 
 // Función para convertir el tiempo en formato HH:MM:SS
