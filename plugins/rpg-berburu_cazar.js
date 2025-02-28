@@ -30,7 +30,7 @@ let handler = async (m, { conn }) => {
     // Enviar la imagen
     const imageUrl = "https://qu.ax/atpzr.jpeg" // Reemplaza con la URL de la imagen que desees mostrar
     setTimeout(() => {
-        conn.sendImage(m.chat, imageUrl, `¡Has cazado un duende y ganado *${toNum(rsl)}* yenes! Ahora tienes un total de *${toNum(user.coin + rsl)}* yenes. 💸`, m)
+        conn.sendMessage(m.chat, { image: { url: imageUrl }, caption: `¡Has cazado un duende y ganado *${toNum(rsl)}* yenes! Ahora tienes un total de *${toNum(user.coin + rsl)}* yenes. 💸` })
     }, 22000);
 
     // Actualiza el tiempo de la última caza
