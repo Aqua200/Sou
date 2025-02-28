@@ -57,7 +57,7 @@ let handler = async (m, { conn }) => {
                       `💞 *Bailaron bajo la luna, susurraron promesas eternas y se juraron amor infinito.*\n` +
                       `💋 *El beso final selló su historia como la más apasionada jamás contada.* 🔥\n\n` +
                       `╚══════💜 *𝑭𝒊𝒏 𝒅𝒆 𝑳𝒂 𝑯𝒊𝒔𝒕𝒐𝒓𝒊𝒂* 💜══════╝`,
-                media: 'https://telegra.ph/file/826ce3530ab20b15a496d.jpg' // Imagen para esta historia
+                media: 'https://qu.ax/rEyXZ.jpeg' // Imagen para esta historia
             },
             {
                 text: `╔══════🌸✨ *𝑨𝒎𝒐𝒓 𝒑𝒓𝒐𝒉𝒊𝒃𝒊𝒅𝒐* ✨🌸══════╗\n\n` +
