@@ -1,6 +1,11 @@
 const handler = async (m, {conn}) => {
   const user = global.db.data.users[m.sender];
 
+  // Inicializar el campo de yenes si no existe
+  if (typeof user.yenes === 'undefined') {
+    user.yenes = 0;  // Si no existe, inicializamos los yenes a 0
+  }
+
   // Definimos el duende común
   const duendeComun = {
     name: 'Duende Común',
@@ -19,9 +24,12 @@ const handler = async (m, {conn}) => {
   conn.sendMessage(m.chat, {image: {url: duendeComun.image}, caption: resultado}, {mentions: [m.sender]});
 
   // Sumamos los yenes ganados a la cuenta del usuario
-  global.db.data.users[m.sender].yenes += duendeComun.yen;
+  user.yenes += duendeComun.yen;
 
-  // Actualizamos el tiempo de la última caza (si ya no quieres el tiempo, puedes quitar esta línea también)
+  // Verificamos que los yenes se sumen correctamente
+  console.log(`Yenes actuales de ${m.sender}: ${user.yenes}`);
+
+  // Actualizamos el tiempo de la última caza
   user.lastCaza = new Date * 1;
 
   setTimeout(() => {
