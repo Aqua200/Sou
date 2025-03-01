@@ -15,18 +15,29 @@ let handler = async (m, { conn }) => {
     ];
 
     // Comando para ver la tienda de waifus
-    if (m.text.toLowerCase().includes('tienda waifus')) {
+    if (m.text.startsWith('#tienda')) {
         let storeInfo = '🛒 *Tienda de Waifus*\n\n';
         waifus.forEach((waifu, i) => {
             storeInfo += `${i + 1}. ${waifu.name} - 💸 ${waifu.price} yenes\n`;
         });
-        storeInfo += `\n💬 *Para comprar una waifu, usa el comando:* \`comprar waifu <número>\``;
+        storeInfo += `\n💬 *Para comprar una waifu, usa el comando:* \`#comprar waifu <número>\``;
 
         return conn.reply(m.chat, storeInfo, m);
     }
 
+    // Comando para ver la ayuda
+    if (m.text.startsWith('#help')) {
+        let helpText = 'Comandos disponibles:\n';
+        helpText += '#tienda - Ver la tienda de waifus\n';
+        helpText += '#comprar waifu <número> - Comprar una waifu\n';
+        helpText += '#minar - Minar recursos y obtener yenes\n';
+        helpText += '#miming - Minar recursos\n';
+
+        return conn.reply(m.chat, helpText, m);
+    }
+
     // Comando para comprar una waifu
-    if (m.text.toLowerCase().startsWith('comprar waifu')) {
+    if (m.text.toLowerCase().startsWith('#comprar waifu')) {
         let args = m.text.split(' ');
         let waifuIndex = parseInt(args[2]) - 1;
 
@@ -87,7 +98,7 @@ let handler = async (m, { conn }) => {
     user.lastmiming = new Date() * 1;
 }
 
-handler.help = ['minar', 'tienda', 'comprar'];
+handler.help = ['minar', 'tienda', 'comprar waifu'];
 handler.tags = ['economy'];
 handler.command = ['minar', 'miming', 'mine'];
 handler.register = true;
