@@ -4,6 +4,28 @@ let handler = async (m, { conn }) => {
     let user = global.db.data.users[m.sender];
     if (!user) return;
 
+    // Comando para comprar waifu
+    if (m.text.startsWith('!comprarwaifu')) {
+        let waifuNombre = m.text.split(' ')[1];
+        let waifu = waifus.find(w => w.nombre.toLowerCase() === waifuNombre.toLowerCase());
+
+        if (!waifu) return conn.reply(m.chat, '⚠️ No se encontró esa waifu.', m);
+        if (user.coin < waifu.costo) return conn.reply(m.chat, `⚠️ No tienes suficientes yenes para comprar a ${waifu.nombre}. Necesitas ${waifu.costo} yenes.`, m);
+
+        // Comprar waifu
+        user.coin -= waifu.costo;
+        userWaifu[m.sender] = waifu;
+
+        return conn.reply(m.chat, `🎉 ¡Felicidades! Ahora tienes a ${waifu.nombre} como tu waifu ayudante.`, m);
+    }
+
+    // Comando para ver las waifus
+    if (m.text === '!waifus') {
+        let waifuList = waifus.map(w => `*${w.nombre}* - Costo: ${w.costo} yenes`).join('\n');
+        return conn.reply(m.chat, `Waifus disponibles para comprar:\n\n${waifuList}`, m);
+    }
+
+
     if (!user.pickaxedurability || user.pickaxedurability <= 0) {
         return conn.reply(m.chat, '⚒️ Tu picota está rota. Repara o compra una nueva antes de seguir minando.', m);
     }
