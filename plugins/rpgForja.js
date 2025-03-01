@@ -1,43 +1,35 @@
-let handler = async (m, { conn, text }) => {
+let handler = async (m, { conn }) => {
     let user = global.db.data.users[m.sender];
 
-    // Define las armas disponibles
-    const armasDisponibles = {
-        espada: {
-            name: 'Espada',
-            damage: 10
-        },
-        arco: {
-            name: 'Arco',
-            damage: 7
-        },
-        // Puedes agregar más armas aquí
-    };
+    // Lista de armas disponibles
+    const availableWeapons = ['Espada de fuego', 'Arco de hielo', 'Lanza de trueno'];
 
-    // Si el comando no tiene texto (nombre del arma), muestra las armas disponibles
-    if (!text) {
-        let message = 'Elige una de las siguientes armas para equipar:\n';
-        for (let arma in armasDisponibles) {
-            message += `- ${armasDisponibles[arma].name}: Daño +${armasDisponibles[arma].damage}\n`;
-        }
-        return conn.reply(m.chat, message, m);
+    // Si no se proporciona el nombre de un arma, mostrar las armas disponibles
+    if (!m.text) {
+        let weaponList = 'Armas disponibles para seleccionar:\n';
+        availableWeapons.forEach((weapon, index) => {
+            weaponList += `${index + 1}. ${weapon}\n`;
+        });
+        return conn.reply(m.chat, weaponList, m);
     }
 
-    // Verifica si el arma existe en el inventario
-    if (!armasDisponibles[text]) {
-        return conn.reply(m.chat, 'Esa arma no está disponible. Usa el comando sin texto para ver las armas disponibles.', m);
+    // Si el usuario elige un arma
+    let selectedWeapon = m.text.trim().toLowerCase();
+
+    if (!availableWeapons.some(weapon => weapon.toLowerCase() === selectedWeapon)) {
+        return conn.reply(m.chat, 'Elige una arma válida de la lista.', m);
     }
 
-    // Equipar el arma
-    user.weapon = armasDisponibles[text].name;  // Asigna el nombre del arma al usuario
-    user.swordAtk = armasDisponibles[text].damage;  // Asigna el daño del arma al usuario
+    // Equipar el arma seleccionada
+    user.weapon = selectedWeapon;
+    user.swordAtk = selectedWeapon === 'Espada de fuego' ? 20 : (selectedWeapon === 'Arco de hielo' ? 15 : 18);
 
-    conn.reply(m.chat, `¡Has equipado la ${armasDisponibles[text].name}! Ahora tu daño aumenta en ${armasDisponibles[text].damage}.`, m);
+    conn.reply(m.chat, `¡Has equipado la ${selectedWeapon}! Daño: +${user.swordAtk}`, m);
 };
 
-handler.help = ['equipa', 'equipar'];
+handler.help = ['equipa', 'armas'];
 handler.tags = ['rpg'];
-handler.command = ['equipa', 'equipar'];
+handler.command = ['equipa', 'armas'];
 handler.group = true;
 
 export default handler;
