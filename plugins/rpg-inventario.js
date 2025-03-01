@@ -117,4 +117,4 @@ createWeaponHandler.tags = ['rpg'];
 createWeaponHandler.command = ['creaarma'];
 createWeaponHandler.group = true;
 
-export default handler;
+export { handler, createWeaponHandler };
