@@ -1,85 +1,52 @@
-let cooldowns = {}; // Definir la variable cooldowns
+let huntHandler = async (m, { conn }) => {
+    let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.sender;
 
-let handler = async (m, { conn }) => {
-    let user = global.db.data.users[m.sender];
-    const time = user.lastberburu + 300000; // 5 minutos de espera
-    if (new Date - user.lastberburu < 300000) { // Verifica si el tiempo de espera no ha pasado
-        return conn.reply(m.chat, `Por favor, descansa un momento para seguir cazando.\n\n⫹⫺ Tiempo restante: ${clockString(time - new Date())}`, m)
+    // Verifica si el usuario existe en la base de datos
+    if (!(who in global.db.data.users)) {
+        return conn.reply(m.chat, 'El usuario no se encuentra en mi base de datos.', m);
     }
 
-    // Lógica para iniciar la caza
-    let rsl = Math.floor(Math.random() * 500); // Yenes ganados
-    let damage = Math.floor(Math.random() * 20); // Daño recibido (opcional)
+    let user = global.db.data.users[who];
 
-    // Si el usuario tiene una espada equipada, sumamos su daño al total
-    if (user.swordAtk) {
-        damage += user.swordAtk; // Agregar el daño de la espada
+    // Si no tiene armas, avisar
+    if (!user.weapon) {
+        return conn.reply(m.chat, 'No tienes ninguna arma equipada. Usa el comando .equipa para equipar un arma.', m);
     }
 
-    // Verifica el arma equipada por el usuario
-    let weapon = user.weapon || "sin arma"; // Si no tiene arma, poner "sin arma"
+    // Obtener el daño del arma equipada
+    let weapon = user.weapon;
+    let weaponDamage = user.swordAtk; // Usamos el atributo de daño del arma equipada (ajustar según tu sistema)
 
-    // Establecer el tiempo de cooldown
-    cooldowns[m.sender] = Date.now();
+    // Realizar la caza (simulando que el duende tiene 100 de salud)
+    let goblinHealth = 100;
+    let goblinDamage = 20; // Daño del duende
 
-    // Verificar si el usuario tiene suficiente salud para continuar la caza
-    if (user.health <= 0) {
-        return conn.reply(m.chat, `💔 No tienes suficiente salud para cazar, usa el comando .heal para curarte.`, m);
-    }
+    let battleMessage = `¡Has comenzado una caza!\n`;
+    battleMessage += `Duende: *${goblinHealth} HP*\n`;
+    battleMessage += `Tu arma: *${weapon}* (Daño: +${weaponDamage})\n`;
 
-    // Restar salud al usuario por el daño durante la caza
-    user.health -= damage;
+    // Calculando el daño
+    let totalDamage = weaponDamage + Math.floor(Math.random() * 10);  // Añadimos un pequeño factor aleatorio al daño
+    goblinHealth -= totalDamage;
 
-    // Si la salud llega a 0 o menos, el usuario se desmaya (opcional)
-    if (user.health <= 0) {
-        user.health = 0;
-        return conn.reply(m.chat, `💔 Te desmayaste durante la caza por falta de salud. Usa .heal para recuperarte.`, m);
-    }
+    if (goblinHealth <= 0) {
+        // Si el duende es derrotado
+        battleMessage += `¡Has derrotado al duende! Has recibido recompensas.\n`;
+        user.coin += 10;  // Ejemplo: ganar monedas
+        user.experience += 20;  // Ganar experiencia
+        user.iron += 5;  // Ejemplo: ganar hierro
 
-    // Obtener el nombre del usuario o su número si no tiene nombre
-    let username = m.pushName || m.sender.split('@')[0];
-
-    // Mensajes de la caza en un solo bloque
-    const imageUrl = "https://qu.ax/atpzr.jpeg"; // Reemplaza con la URL de la imagen que desees mostrar
-    let messages = [
-        `@${m.sender.split('@s.whatsapp.net')[0]} *¡Objetivo en radar! 🧚‍♂️🎯*`,
-        `@${m.sender.split('@s.whatsapp.net')[0]} *¡Preparación para la caza con ${weapon}! 🗡️*`, // Agregar el arma al mensaje
-        `@${m.sender.split('@s.whatsapp.net')[0]} *¡Duendes detectados! 🧚‍♂️*`,
-        `¡Has cazado duendes y ganado *${toNum(rsl)}* yenes! Ahora tienes un total de *${toNum(user.coin + rsl)}* yenes. 💸\n💔 Te queda *${user.health}* de salud.`
-    ];
-
-    // Enviar todos los mensajes de una vez, sin repetir el mismo contenido
-    conn.reply(m.chat, messages.slice(0, 3).join('\n\n'), null, { mentions: [m.sender] });
-    conn.sendMessage(m.chat, { image: { url: imageUrl }, caption: messages[3] });
-
-    // Actualiza el saldo de yenes en la base de datos
-    user.coin += rsl;
-
-    // Actualiza el tiempo de la última caza
-    user.lastberburu = new Date * 1;
-};
-
-handler.help = ['cazar', 'cazar_duende', 'cazar_duendes'];
-handler.tags = ['rpg'];
-handler.command = ['cazar', 'hunt', 'cazar_duende', 'duende'];
-handler.group = true;
-handler.register = true;
-
-export default handler;
-
-function toNum(number) {
-    if (number >= 1000 && number < 1000000) {
-        return (number / 1000).toFixed(1) + 'k';
-    } else if (number >= 1000000) {
-        return (number / 1000000).toFixed(1) + 'M';
+        battleMessage += `Recompensas: 10 monedas, 20 de experiencia, 5 de hierro.\n`;
     } else {
-        return number.toString();
+        // Si el duende aún tiene vida
+        battleMessage += `¡El duende sigue luchando! Queda: *${goblinHealth} HP*.\n`;
+        battleMessage += `Haz más daño para derrotarlo.\n`;
     }
+
+    conn.reply(m.chat, battleMessage, m);
 }
 
-function clockString(ms) {
-    let seconds = Math.floor(ms / 1000);
-    let minutes = Math.floor(seconds / 60);
-    seconds = seconds % 60;
-    return `${minutes} minutos y ${seconds} segundos`;
-}
+huntHandler.help = ['cazar'];
+huntHandler.tags = ['rpg'];
+huntHandler.command = ['cazar'];
+huntHandler.group = true;
