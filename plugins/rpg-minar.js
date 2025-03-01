@@ -1,33 +1,57 @@
-// Comando .minar para ganar yenes en lugar de materiales
-async function minar(m, { userWaifu, pickByProbability, pickRandomRange, lugares }) {
-    // Obtiene la waifu del usuario, si tiene una asignada
-    let waifu = userWaifu[m.sender];
-    if (!waifu) {
-        return m.reply("No tienes una waifu asignada. ¡Ve a conseguir una waifu con el comando .waifu!");
+let cooldowns = {}
+
+let handler = async (m, { conn }) => {
+    let user = global.db.data.users[m.sender];
+    if (!user) return;
+
+    let coin = pickRandom([20, 5, 7, 8, 88, 40, 50, 70, 90, 999, 300]);
+    let materialValue = pickRandom([5, 10, 15, 20, 25]);  // Valor de materiales convertidos a yenes
+
+    let totalYen = coin + materialValue; // Total de yenes obtenidos
+
+    let img = 'https://qu.ax/JguPr.jpg';
+    let time = user.lastmiming + 600000;
+
+    if (new Date() - user.lastmiming < 600000) {
+        return conn.reply(m.chat, `${emoji3} Debes esperar ${msToTime(time - new Date())} para volver a minar.`, m);
     }
 
-    // Aquí se incluyen los beneficios de la waifu
-    let bonus = waifu.bonus || {};
-    let lugar = pickByProbability(lugares);
+    let hasil = Math.floor(Math.random() * 1000);
+    let info = `⛏️ *Te has adentrando en lo profundo de las cuevas*\n\n` +
+    `> *🍬 Obtuviste estos recursos*\n\n` +
+    `✨ *Exp*: ${hasil}\n` +
+    `💸 *Yenes*: ${totalYen}\n`;
 
-    // Generar yenes de manera aleatoria y con bonificación de waifu
-    let yenesBase = pickRandomRange(lugar.minerales.yen); // Aleatorio dentro del rango de yenes del lugar
-    let yenes = Math.floor(yenesBase * (bonus.coin || 1)); // Se aplica la bonificación de la waifu a los yenes
+    await conn.sendFile(m.chat, img, 'yuki.jpg', info, fkontak);
+    await m.react('⛏️');
 
-    // Agregar los yenes ganados al total del usuario
-    userYen[m.sender] = (userYen[m.sender] || 0) + yenes;
+    user.health -= 50;
+    user.pickaxedurability -= 30;
+    user.coin += totalYen; // Solo yenes sumados
+    user.lastmiming = new Date() * 1;
+}
 
-    // Crear el mensaje de resultado de la minería
-    let resultado = `
-    *¡Minería Exitosa!*
-    Has ganado: ${yenes} yenes 💰
+handler.help = ['minar'];
+handler.tags = ['economy'];
+handler.command = ['minar', 'miming', 'mine'];
+handler.register = true;
+handler.group = true;
 
-    *Beneficio de tu waifu ${waifu.nombre}:* 
-    - Bonificación de yenes: x${bonus.coin || 1}
+export default handler;
 
-    *¡Gracias a tu waifu, obtuviste yenes mejorados!*
-    `;
+function pickRandom(list) {
+    return list[Math.floor(Math.random() * list.length)];
+}
 
-    // Responder al usuario con el resultado
-    return m.reply(resultado);
+function msToTime(duration) {
+    var milliseconds = parseInt((duration % 1000) / 100),
+    seconds = Math.floor((duration / 1000) % 60),
+    minutes = Math.floor((duration / (1000 * 60)) % 60),
+    hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+
+    hours = (hours < 10) ? '0' + hours : hours;
+    minutes = (minutes < 10) ? '0' + minutes : minutes;
+    seconds = (seconds < 10) ? '0' + seconds : seconds;
+
+    return minutes + ' m y ' + seconds + ' s ';
 }
