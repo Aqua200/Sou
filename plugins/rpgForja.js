@@ -10,6 +10,7 @@ let handler = async (m, { conn }) => {
         availableWeapons.forEach((weapon, index) => {
             weaponList += `${index + 1}. ${weapon}\n`;
         });
+        weaponList += '\nPara equipar un arma, usa el comando: `.equipa [nombre del arma]`\nEjemplo: `.equipa Espada de fuego`';
         return conn.reply(m.chat, weaponList, m);
     }
 
