@@ -7,22 +7,35 @@ let handlerBuy = async (m, { conn, usedPrefix }) => {
         return conn.reply(m.chat, `No tienes suficiente ${moneda} para comprar una waifu.`, m);
     }
 
-    user.coin -= precio;  // Resta el dinero de la cartera
-    if (!user.waifus) user.waifus = [];  // Asegúrate de que el usuario tenga un arreglo de waifus
+    // Lista de waifus con sus nombres y URL de imagen
+    const waifus = [
+        { name: 'Waifu Sakura', imageUrl: 'https://ejemplo.com/imagen-sakura.jpg' },
+        { name: 'Waifu Miku', imageUrl: 'https://ejemplo.com/imagen-miku.jpg' },
+        { name: 'Waifu Asuka', imageUrl: 'https://ejemplo.com/imagen-asuka.jpg' }
+        // Puedes añadir más waifus a esta lista
+    ];
 
-    // Nombre y URL de la waifu que deseas añadir
-    let waifuName = 'Waifu Sakura';  // Aquí puedes cambiar el nombre de la waifu
-    let waifuImageUrl = 'https://ejemplo.com/imagen-sakura.jpg';  // Aquí puedes cambiar la URL de la imagen de la waifu
+    // Elegir una waifu aleatoria
+    let waifu = waifus[Math.floor(Math.random() * waifus.length)];
 
-    // Crea un objeto para la waifu con nombre y URL de la imagen
-    let waifu = {
-        name: waifuName,
-        imageUrl: waifuImageUrl
-    };
+    // Mostrar la waifu aleatoria
+    conn.reply(m.chat, `¡Te ha tocado una waifu aleatoria! Nombre: ${waifu.name}\nPara adquirirla, escribe *${usedPrefix}w*`, m);
 
-    user.waifus.push(waifu);  // Añade la waifu al inventario del usuario
+    // Agregar la waifu al inventario del usuario cuando use el comando .w
+    let handlerAcquire = async (m, { conn }) => {
+        if (user.coin < precio) {
+            return conn.reply(m.chat, `No tienes suficiente ${moneda} para adquirir esta waifu.`, m);
+        }
 
-    conn.reply(m.chat, `¡Has comprado a ${waifuName}! Ahora tienes: ${user.waifus.map(w => w.name).join(', ')}`, m);
+        user.coin -= precio;  // Resta el dinero de la cartera
+        if (!user.waifus) user.waifus = [];  // Asegúrate de que el usuario tenga un arreglo de waifus
+        user.waifus.push(waifu);  // Añade la waifu al inventario del usuario
+
+        conn.reply(m.chat, `¡Has adquirido a ${waifu.name}! Ahora tienes: ${user.waifus.map(w => w.name).join(', ')}`, m);
+    }
+
+    handlerAcquire.command = ['w'];  // Este comando será el que adquiera la waifu
+    return handlerAcquire;
 }
 
 handlerBuy.help = ['comprarwaifu'];
