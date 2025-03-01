@@ -112,9 +112,15 @@ let createWeaponHandler = async (m, { conn, text }) => {
     conn.reply(m.chat, `¡Has creado una nueva arma! *Espada de Hierro* (Daño: +${newWeapon.attack})`, m);
 };
 
+// Comandos configurados
 createWeaponHandler.help = ['creaarma'];
 createWeaponHandler.tags = ['rpg'];
 createWeaponHandler.command = ['creaarma'];
 createWeaponHandler.group = true;
+
+handler.help = ['inventario'];
+handler.tags = ['rpg'];
+handler.command = ['inventario', '.inventario'];
+handler.group = true;
 
 export { handler, createWeaponHandler };
