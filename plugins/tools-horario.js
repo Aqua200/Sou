@@ -1,53 +1,42 @@
 import moment from 'moment-timezone';
 
 const handler = async (m, { conn }) => {
-  // Definir las zonas horarias
-  const fechaper = moment().tz('America/Lima').format('DD/MM/YYYY HH:mm:ss');
-  const fechamex = moment().tz('America/Mexico_City').format('DD/MM/YYYY HH:mm:ss');
-  const fechabol = moment().tz('America/La_Paz').format('DD/MM/YYYY HH:mm:ss');
-  const fechachi = moment().tz('America/Santiago').format('DD/MM/YYYY HH:mm:ss');
-  const fechaarg = moment().tz('America/Argentina/Buenos_Aires').format('DD/MM/YYYY HH:mm:ss');
-  const fechacol = moment().tz('America/Bogota').format('DD/MM/YYYY HH:mm:ss');
-  const fechaecu = moment().tz('America/Guayaquil').format('DD/MM/YYYY HH:mm:ss');
-  const fechacosr = moment().tz('America/Costa_Rica').format('DD/MM/YYYY HH:mm:ss');
-  const fechacub = moment().tz('America/Havana').format('DD/MM/YYYY HH:mm:ss');
-  const fechagua = moment().tz('America/Guatemala').format('DD/MM/YYYY HH:mm:ss');
-  const fechahon = moment().tz('America/Tegucigalpa').format('DD/MM/YYYY HH:mm:ss');
-  const fechanic = moment().tz('America/Managua').format('DD/MM/YYYY HH:mm:ss');
-  const fechapan = moment().tz('America/Panama').format('DD/MM/YYYY HH:mm:ss');
-  const fechauru = moment().tz('America/Montevideo').format('DD/MM/YYYY HH:mm:ss');
-  const fechaven = moment().tz('America/Caracas').format('DD/MM/YYYY HH:mm:ss');
-  const fechapar = moment().tz('America/Asuncion').format('DD/MM/YYYY HH:mm:ss');
-  const fechanew = moment().tz('America/New_York').format('DD/MM/YYYY HH:mm:ss');
-  const fechaasi = moment().tz('Asia/Jakarta').format('DD/MM/YYYY HH:mm:ss');
-  const fechabra = moment().tz('America/Sao_Paulo').format('DD/MM/YYYY HH:mm:ss');
-  const fechaafri = moment().tz('Africa/Malabo').format('DD/MM/YYYY HH:mm:ss');
-  const fechapariz = moment().tz('Europe/Paris').format('DD/MM/YYYY HH:mm:ss'); // Hora de París
+  const zonas = [
+    { nombre: 'Peru', zona: 'America/Lima' },
+    { nombre: 'Mexico', zona: 'America/Mexico_City' },
+    { nombre: 'Bolivia', zona: 'America/La_Paz' },
+    { nombre: 'Chile', zona: 'America/Santiago' },
+    { nombre: 'Argentina', zona: 'America/Argentina/Buenos_Aires' },
+    { nombre: 'Colombia', zona: 'America/Bogota' },
+    { nombre: 'Ecuador', zona: 'America/Guayaquil' },
+    { nombre: 'Costa Rica', zona: 'America/Costa_Rica' },
+    { nombre: 'Cuba', zona: 'America/Havana' },
+    { nombre: 'Guatemala', zona: 'America/Guatemala' },
+    { nombre: 'Honduras', zona: 'America/Tegucigalpa' },
+    { nombre: 'Nicaragua', zona: 'America/Managua' },
+    { nombre: 'Panama', zona: 'America/Panama' },
+    { nombre: 'Uruguay', zona: 'America/Montevideo' },
+    { nombre: 'Venezuela', zona: 'America/Caracas' },
+    { nombre: 'Paraguay', zona: 'America/Asuncion' },
+    { nombre: 'New York', zona: 'America/New_York' },
+    { nombre: 'Asia', zona: 'Asia/Jakarta' },
+    { nombre: 'Brasil', zona: 'America/Sao_Paulo' },
+    { nombre: 'G.N.Q', zona: 'Africa/Malabo' },
+    { nombre: 'París', zona: 'Europe/Paris' }
+  ];
 
-  // Enviar el mensaje con las zonas horarias
+  const fechaInfo = zonas.map(({ nombre, zona }) => {
+    const fecha = moment().tz(zona).format('DD/MM/YYYY HH:mm:ss');
+    const diaSemana = moment().tz(zona).format('dddd');
+    const isDST = moment().tz(zona).isDST() ? 'Sí' : 'No'; // Horario de verano
+    const desfaseUTC = moment().tz(zona).utcOffset() / 60; // Desfase de UTC
+
+    return `⏱️${nombre}: ${fecha} | Día: ${diaSemana} | Horario de verano: ${isDST} | UTC +${desfaseUTC}`;
+  }).join('\n');
+
   await conn.sendMessage(m.chat, {
     text: `「 ZONA-HORARIA ⏰ 」
-⏱️Peru       : ${fechaper}
-⏱️Mexico     : ${fechamex}
-⏱️Bolivia    : ${fechabol}
-⏱️Chile      : ${fechachi}
-⏱️Argentina  : ${fechaarg}
-⏱️Colombia   : ${fechacol}
-⏱️Ecuador    : ${fechaecu}
-⏱️Costa_Rica : ${fechacosr}
-⏱️Cuba       : ${fechacub}
-⏱️Guatemala  : ${fechagua}
-⏱️Honduras   : ${fechahon}
-⏱️Nicaragua  : ${fechanic}
-⏱️Panama     : ${fechapan}
-⏱️Uruguay    : ${fechauru}
-⏱️Venezuela  : ${fechaven}
-⏱️Paraguay   : ${fechapar}
-⏱️New York   : ${fechanew}
-⏱️Asia       : ${fechaasi}
-⏱️Brasil     : ${fechabra}
-⏱️G.N.Q      : ${fechaafri}
-⏱️París      : ${fechapariz} 
+${fechaInfo}
 ${String.fromCharCode(8206).repeat(850)}
 Zona horaria del servidor actual:\n[ ${Intl.DateTimeFormat().resolvedOptions().timeZone} ] ${moment().tz(Intl.DateTimeFormat().resolvedOptions().timeZone).format('DD/MM/YYYY HH:mm:ss')}`
   }, { quoted: m });
