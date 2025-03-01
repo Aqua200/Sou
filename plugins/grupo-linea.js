@@ -12,16 +12,16 @@ let handler = async (m, { conn, args }) => {
 
     const listaEnLinea =
       participantesUnicos.length > 0
-        ? participantesUnicos.map((k) => `🍡 @${k.split("@")[0]}`).join("\n")
+        ? participantesUnicos.map((k) => `💗 @${k.split("@")[0]} 💗`).join("\n")
         : "🏯 *No hay nadie en línea por ahora.* 🏯";
 
-    const mensaje = `╭──────────────╮  
-🎐 *Usuarios en Línea* 🎐  
-╰──────────────╯  
-
+    const mensaje = `╭───────────────✿  
+│ 🎐 *Usuarios en Línea* 🎐  
+├───────────────✿  
 ${listaEnLinea}  
-
-🍁 *Hakari siempre está aquí para ti.* 🍁`;
+├───────────────✿  
+│ 🍁 *Hakari siempre está aquí para ti.* 🍁  
+╰───────────────✿`;
 
     await conn.sendMessage(m.chat, {
       text: mensaje,
