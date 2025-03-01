@@ -16,6 +16,9 @@ let handler = async (m, { conn }) => {
         damage += user.swordAtk; // Agregar el daño de la espada
     }
 
+    // Verifica el arma equipada por el usuario
+    let weapon = user.weapon || "sin arma"; // Si no tiene arma, poner "sin arma"
+
     // Establecer el tiempo de cooldown
     cooldowns[m.sender] = Date.now();
 
@@ -40,7 +43,7 @@ let handler = async (m, { conn }) => {
     const imageUrl = "https://qu.ax/atpzr.jpeg"; // Reemplaza con la URL de la imagen que desees mostrar
     let messages = [
         `@${m.sender.split('@s.whatsapp.net')[0]} *¡Objetivo en radar! 🧚‍♂️🎯*`,
-        `@${m.sender.split('@s.whatsapp.net')[0]} *¡Preparación para la caza! 🗡️*`,
+        `@${m.sender.split('@s.whatsapp.net')[0]} *¡Preparación para la caza con ${weapon}! 🗡️*`, // Agregar el arma al mensaje
         `@${m.sender.split('@s.whatsapp.net')[0]} *¡Duendes detectados! 🧚‍♂️*`,
         `¡Has cazado duendes y ganado *${toNum(rsl)}* yenes! Ahora tienes un total de *${toNum(user.coin + rsl)}* yenes. 💸\n💔 Te queda *${user.health}* de salud.`
     ];
