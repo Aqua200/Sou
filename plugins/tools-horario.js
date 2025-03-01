@@ -1,6 +1,7 @@
 import moment from 'moment-timezone';
 
 const handler = async (m, { conn }) => {
+  // Definir las zonas horarias
   const zonas = [
     { nombre: 'Peru', zona: 'America/Lima' },
     { nombre: 'Mexico', zona: 'America/Mexico_City' },
@@ -25,20 +26,18 @@ const handler = async (m, { conn }) => {
     { nombre: 'París', zona: 'Europe/Paris' }
   ];
 
+  // Generar la información con la hora en cada zona
   const fechaInfo = zonas.map(({ nombre, zona }) => {
-    const fecha = moment().tz(zona).format('DD/MM/YYYY HH:mm:ss');
-    const diaSemana = moment().tz(zona).format('dddd');
-    const isDST = moment().tz(zona).isDST() ? 'Sí' : 'No'; // Horario de verano
-    const desfaseUTC = moment().tz(zona).utcOffset() / 60; // Desfase de UTC
-
-    return `⏱️${nombre}: ${fecha} | Día: ${diaSemana} | Horario de verano: ${isDST} | UTC +${desfaseUTC}`;
+    const fecha = moment().tz(zona).format('DD/MM/YYYY HH:mm');
+    return `⏱️${nombre}: ${fecha}`;
   }).join('\n');
 
+  // Enviar la información
   await conn.sendMessage(m.chat, {
     text: `「 ZONA-HORARIA ⏰ 」
 ${fechaInfo}
 ${String.fromCharCode(8206).repeat(850)}
-Zona horaria del servidor actual:\n[ ${Intl.DateTimeFormat().resolvedOptions().timeZone} ] ${moment().tz(Intl.DateTimeFormat().resolvedOptions().timeZone).format('DD/MM/YYYY HH:mm:ss')}`
+Zona horaria del servidor actual:\n[ ${Intl.DateTimeFormat().resolvedOptions().timeZone} ] ${moment().tz(Intl.DateTimeFormat().resolvedOptions().timeZone).format('DD/MM/YYYY HH:mm')}`
   }, { quoted: m });
 };
 
