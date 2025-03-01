@@ -31,24 +31,18 @@ let handler = async (m, { conn }) => {
     // Obtener el nombre del usuario o su número si no tiene nombre
     let username = m.pushName || m.sender.split('@')[0];
 
-    // Mensajes de la caza
-    setTimeout(() => {
-        conn.reply(m.chat, `@${m.sender.split('@s.whatsapp.net')[0]} *¡Objetivo en radar! 🧚‍♂️🎯*`, null, { mentions: [m.sender] })
-    }, 20000);
-
-    setTimeout(() => {
-        conn.reply(m.chat, `@${m.sender.split('@s.whatsapp.net')[0]} *¡Preparación para la caza! 🗡️*`, null, { mentions: [m.sender] })
-    }, 18000);
-
-    setTimeout(() => {
-        conn.reply(m.chat, `@${m.sender.split('@s.whatsapp.net')[0]} *¡Duendes detectados! 🧚‍♂️*`, null, { mentions: [m.sender] })
-    }, 15000);
-
-    // Enviar la imagen
+    // Mensajes de la caza en un solo bloque
     const imageUrl = "https://qu.ax/atpzr.jpeg"; // Reemplaza con la URL de la imagen que desees mostrar
-    setTimeout(() => {
-        conn.sendMessage(m.chat, { image: { url: imageUrl }, caption: `¡Has cazado duendes y ganado *${toNum(rsl)}* yenes! Ahora tienes un total de *${toNum(user.coin + rsl)}* yenes. 💸\n💔 Te queda *${user.health}* de salud.` })
-    }, 22000);
+    let messages = [
+        `@${m.sender.split('@s.whatsapp.net')[0]} *¡Objetivo en radar! 🧚‍♂️🎯*`,
+        `@${m.sender.split('@s.whatsapp.net')[0]} *¡Preparación para la caza! 🗡️*`,
+        `@${m.sender.split('@s.whatsapp.net')[0]} *¡Duendes detectados! 🧚‍♂️*`,
+        `¡Has cazado duendes y ganado *${toNum(rsl)}* yenes! Ahora tienes un total de *${toNum(user.coin + rsl)}* yenes. 💸\n💔 Te queda *${user.health}* de salud.`
+    ];
+
+    // Enviar todos los mensajes de una vez
+    conn.reply(m.chat, messages.join('\n\n'), null, { mentions: [m.sender] });
+    conn.sendMessage(m.chat, { image: { url: imageUrl }, caption: messages[3] });
 
     // Actualiza el saldo de yenes en la base de datos
     user.coin += rsl;
