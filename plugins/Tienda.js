@@ -28,6 +28,11 @@ let handlerBuy = async (m, { conn, usedPrefix }) => {
             return conn.reply(m.chat, `Esta waifu ya ha sido adquirida por otro usuario y no está disponible para ti.`, m);
         }
 
+        // Verificar si el usuario ya tiene esta waifu
+        if (user.waifus && user.waifus.some(w => w.name === waifu.name)) {
+            return conn.reply(m.chat, `¡Ya tienes a ${waifu.name}!`, m);
+        }
+
         if (user.coin < precio) {
             return conn.reply(m.chat, `No tienes suficiente ${moneda} para adquirir esta waifu.`, m);
         }
