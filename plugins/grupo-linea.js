@@ -12,7 +12,7 @@ let handler = async (m, { conn, args }) => {
 
     const listaEnLinea =
       participantesUnicos.length > 0
-        ? participantesUnicos.map((k) => `💗 @${k.split("@")[0]} 💗`).join("\n")
+        ? participantesUnicos.map((k) => `💗 @${k.split("@")[0]} `).join("\n")
         : "🏯 *No hay nadie en línea por ahora.* 🏯";
 
     const mensaje = `╭───────────────✿  
