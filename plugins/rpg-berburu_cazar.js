@@ -11,6 +11,11 @@ let handler = async (m, { conn }) => {
     let rsl = Math.floor(Math.random() * 500); // Yenes ganados
     let damage = Math.floor(Math.random() * 20); // Daño recibido (opcional)
 
+    // Si el usuario tiene una espada equipada, sumamos su daño al total
+    if (user.swordAtk) {
+        damage += user.swordAtk; // Agregar el daño de la espada
+    }
+
     // Establecer el tiempo de cooldown
     cooldowns[m.sender] = Date.now();
 
