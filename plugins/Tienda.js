@@ -21,8 +21,13 @@ let handlerBuy = async (m, { conn, usedPrefix }) => {
     // Mostrar la waifu aleatoria
     conn.reply(m.chat, `¡Te ha tocado una waifu aleatoria! Nombre: ${waifu.name}\nPara adquirirla, escribe *${usedPrefix}w*`, m);
 
-    // Agregar la waifu al inventario del usuario cuando use el comando .w
+    // Comando para adquirir la waifu
     let handlerAcquire = async (m, { conn }) => {
+        // Verificar si la waifu ya ha sido adquirida por otro usuario
+        if (Object.values(global.db.data.users).some(user => user.waifus.some(w => w.name === waifu.name))) {
+            return conn.reply(m.chat, `Esta waifu ya ha sido adquirida por otro usuario y no está disponible para ti.`, m);
+        }
+
         if (user.coin < precio) {
             return conn.reply(m.chat, `No tienes suficiente ${moneda} para adquirir esta waifu.`, m);
         }
