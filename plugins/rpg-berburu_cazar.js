@@ -45,8 +45,8 @@ let handler = async (m, { conn }) => {
         `¡Has cazado duendes y ganado *${toNum(rsl)}* yenes! Ahora tienes un total de *${toNum(user.coin + rsl)}* yenes. 💸\n💔 Te queda *${user.health}* de salud.`
     ];
 
-    // Enviar todos los mensajes de una vez
-    conn.reply(m.chat, messages.join('\n\n'), null, { mentions: [m.sender] });
+    // Enviar todos los mensajes de una vez, sin repetir el mismo contenido
+    conn.reply(m.chat, messages.slice(0, 3).join('\n\n'), null, { mentions: [m.sender] });
     conn.sendMessage(m.chat, { image: { url: imageUrl }, caption: messages[3] });
 
     // Actualiza el saldo de yenes en la base de datos
