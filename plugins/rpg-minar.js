@@ -87,7 +87,7 @@ let handler = async (m, { conn }) => {
     user.lastmiming = new Date() * 1;
 }
 
-handler.help = ['minar', 'tienda waifus', 'comprar waifu'];
+handler.help = ['minar', 'tienda', 'comprar'];
 handler.tags = ['economy'];
 handler.command = ['minar', 'miming', 'mine'];
 handler.register = true;
