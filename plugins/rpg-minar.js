@@ -1,4 +1,5 @@
-let cooldowns = {}
+let cooldowns = {};
+let purchasedWaifus = {};  // Mantener un registro de las waifus compradas
 
 let handler = async (m, { conn }) => {
     let user = global.db.data.users[m.sender];
@@ -35,6 +36,11 @@ let handler = async (m, { conn }) => {
 
         let selectedWaifu = waifus[waifuIndex];
 
+        // Verificar si la waifu ya ha sido comprada
+        if (purchasedWaifus[selectedWaifu.name]) {
+            return conn.reply(m.chat, `❌ *La waifu ${selectedWaifu.name} ya ha sido comprada por otro usuario.*`, m);
+        }
+
         if (user.coin < selectedWaifu.price) {
             return conn.reply(m.chat, `❌ *No tienes suficientes yenes para comprar a ${selectedWaifu.name}.*`, m);
         }
@@ -43,6 +49,9 @@ let handler = async (m, { conn }) => {
         user.coin -= selectedWaifu.price;
         user.waifu = selectedWaifu.name;
         user.waifuBonus = selectedWaifu.bonus;
+
+        // Registrar que la waifu ha sido comprada
+        purchasedWaifus[selectedWaifu.name] = m.sender;
 
         return conn.reply(m.chat, `✅ *Has comprado a ${selectedWaifu.name} por ${selectedWaifu.price} yenes.*\n` +
             `✨ *Bono de waifu*: ${selectedWaifu.bonus} yenes.\n` +
