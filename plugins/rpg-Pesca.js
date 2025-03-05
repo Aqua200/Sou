@@ -51,7 +51,7 @@ const pescas = [
     { mensaje: "Has atrapado dos peses koi y ganas", imagen: "https://qu.ax/xwYPN.jpeg" },
     { mensaje: "Capturaste un pez y ganas", imagen: "https://qu.ax/hYTZ.jpg" },
     { mensaje: "Encontraste una vieja bota en el agua, pero dentro había dinero. Obtienes", imagen: "https://qu.ax/iaBTC.jpeg" },
-    { mensaje: "Atrapas un tiburón pequeño y ganas", imagen: "https://qu.ax/NYqL.jpg" },
+    { mensaje: "Atrapas un tiburón pequeño y ganas", imagen: "https://qu.ax/JZbAB.jpeg" },
     { mensaje: "Lograste sacar un pulpo del agua y obtienes", imagen: "https://qu.ax/JTCz.jpg" },
     { mensaje: "Pescaste una carpa enorme y recibes", imagen: "https://qu.ax/4s7M.jpg" },
     { mensaje: "Sacaste un pez raro y ganas", imagen: "https://qu.ax/L9Bq.jpg" }
