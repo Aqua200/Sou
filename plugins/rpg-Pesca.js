@@ -49,7 +49,7 @@ function pickRandom(list) {
 
 const pescas = [
     { mensaje: "Has atrapado dos peses koi y ganas", imagen: "https://qu.ax/xwYPN.jpeg" },
-    { mensaje: "Capturaste un pez espada y ganas", imagen: "https://qu.ax/hYTZ.jpg" },
+    { mensaje: "Capturaste un pez y ganas", imagen: "https://qu.ax/hYTZ.jpg" },
     { mensaje: "Encontraste una vieja bota en el agua, pero dentro había dinero. Obtienes", imagen: "https://qu.ax/sLJD.jpg" },
     { mensaje: "Atrapas un tiburón pequeño y ganas", imagen: "https://qu.ax/NYqL.jpg" },
     { mensaje: "Lograste sacar un pulpo del agua y obtienes", imagen: "https://qu.ax/JTCz.jpg" },
