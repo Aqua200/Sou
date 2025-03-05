@@ -2,27 +2,34 @@ const toxicRegex = /g0re|g0r3|g.o.r.e|sap0|sap4|malparido|malparida|malparidos|m
 
 let handler = m => m
 handler.before = async function (m, { conn, isAdmin, isBotAdmin, isOwner }) { 
-if (m.isBaileys && m.fromMe)
-return !0
-if (!m.isGroup)
-return !1
+if (m.isBaileys && m.fromMe) return !0
+if (!m.isGroup) return !1
+
   let user = global.db.data.users[m.sender]
   let chat = global.db.data.chats[m.chat]
   let bot = global.db.data.settings[this.user.jid] || {}
   let img = 'https://qu.ax/trzJV.jpg'
- const isToxic = toxicRegex.exec(m.text)
+  const isToxic = toxicRegex.exec(m.text)
 
 if (isToxic && chat.antiToxic && !isOwner && !isAdmin) {
-user.warn += 1
-if (!(user.warn >= 3)) await m.reply(`${user.warn == 1 ? `*@${m.sender.split`@`[0]}*` : `*@${m.sender.split`@`[0]}*`}, Tienes: (${isToxic}) advertencias... tienes: *${user.warn}/3*\n\nde advertencias.`, false, { mentions: [m.sender] })}
+  user.warn += 1
+  if (!(user.warn >= 3)) {
+    await m.reply(`${user.warn == 1 ? `Oh no, *@${m.sender.split`@`[0]}*...` : `Ay, *@${m.sender.split`@`[0]}*...`}  
+No uses esas palabritas, por favor...  
+Ahora tienes *${user.warn}/3* advertencias.`, false, { mentions: [m.sender] })
+  }
+}
 
 if (user.warn >= 3) {
-user.warn = 0
-await m.reply(`'𝙎𝙚𝙧𝙖𝙨 𝙚𝙡𝙞𝙢𝙞𝙣𝙖𝙙𝙤  \n*@${m.sender.split`@`[0]}*`, false, { mentions: [m.sender] })
-user.banned = true
-await this.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
-//await this.updateBlockStatus(m.sender, 'block')
+  user.warn = 0
+  await m.reply(`L-Lo siento... pero tienes demasiadas advertencias...  
+Voy a tener que sacarte del grupo... *¡Perdón!* (╥﹏╥)  
+*@${m.sender.split`@`[0]}*, cuídate...`, false, { mentions: [m.sender] })
+  user.banned = true
+  await this.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
 }
+
 return !1
 }
+
 export default handler
