@@ -10,12 +10,12 @@ export async function before(m, { isAdmin, isBotAdmin }) {
     const grupo = `https://chat.whatsapp.com`;
 
     if (isAdmin && chat.antiLink && m.text.includes(grupo)) {
-        return conn.reply(m.chat, `🏷 *Hey!! El anti-link está activo, pero eres admin. ¡Salvado!*`, m);
+        return conn.reply(m.chat, `🌸 E-eh... el anti-link está activado, pero como eres admin... ¡e-estás a salvo! >//<`, m);
     }
 
     if (chat.antiLink && isGroupLink && !isAdmin) {
         if (!isBotAdmin) {
-            return conn.reply(m.chat, `🌼 *No soy admin, no puedo eliminar intrusos*`, m);
+            return conn.reply(m.chat, `🥺 U-uhm... no soy admin... n-no puedo hacer nada...`, m);
         }
 
         const linkThisGroup = `https://chat.whatsapp.com/${await this.groupInviteCode(m.chat)}`;
@@ -28,7 +28,7 @@ export async function before(m, { isAdmin, isBotAdmin }) {
         await conn.sendMessage(m.chat, { delete: m.key });
 
         // **Enviar advertencia después de la expulsión**
-        await conn.reply(m.chat, `📎 *¡Enlace detectado y usuario eliminado!*\n\n*${await this.getName(m.sender)} envió un enlace prohibido y ha sido expulsado.*`, m);
+        await conn.reply(m.chat, `😖 L-lo siento... ¡pero los enlaces no están permitidos!\n\n*${await this.getName(m.sender)}* envió un enlace prohibido... a-ahora ya no está aquí...`, m);
 
         return false;
     }
