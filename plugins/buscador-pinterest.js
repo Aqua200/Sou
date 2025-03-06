@@ -11,10 +11,15 @@ let handler = async (_0x10bd40, {
   command: _0x5ad406
 }) => {
   if (!_0x27db11) {
-    return _0x9c7141.reply(_0x10bd40.chat, `${emoji} Por favor, ingresa lo que deseas buscar en pinterest.`, _0x10bd40);
+    return _0x9c7141.reply(_0x10bd40.chat, "🌸 *¿Que quieres buscar en pinterest?*", _0x10bd40, rcanal);
   }
     await _0x10bd40.react(rwait);
- _0x9c7141.reply(_0x10bd40.chat, `${emoji2} Descargando su imagen, espere un momento...`, _0x10bd40)
+ _0x9c7141.reply(_0x10bd40.chat, '🌸 *Descargando su imagen...*', _0x10bd40, {
+ contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, showAdAttribution: true,
+ title: packname,
+ body: dev,
+ previewType: 0, thumbnail: icons,
+ sourceUrl: channel }}})
   async function _0x3f3fc7(_0x5f4723) {
     const {
       imageMessage: _0x14a396
@@ -57,7 +62,7 @@ let handler = async (_0x10bd40, {
       'nativeFlowMessage': proto.Message.InteractiveMessage.NativeFlowMessage.fromObject({
         'buttons': [{
           'name': "cta_url",
-          'buttonParamsJson': "{\"display_text\":\"url 🔗\",\"Url\":\"https://www.pinterest.com/search/pins/?rs=typed&q=" + _0x27db11 + "\",\"merchant_url\":\"https://www.pinterest.com/search/pins/?rs=typed&q=" + _0x27db11 + "\"}"
+          'buttonParamsJson': "{\"display_text\":\"url 📫\",\"Url\":\"https://www.pinterest.com/search/pins/?rs=typed&q=" + _0x27db11 + "\",\"merchant_url\":\"https://www.pinterest.com/search/pins/?rs=typed&q=" + _0x27db11 + "\"}"
         }]
       })
     });
@@ -71,10 +76,10 @@ let handler = async (_0x10bd40, {
         },
         'interactiveMessage': proto.Message.InteractiveMessage.fromObject({
           'body': proto.Message.InteractiveMessage.Body.create({
-            'text': `${emoji} Resultado de: ` + _0x27db11
+            'text': "🌸 Resultado de : " + _0x27db11
           }),
           'footer': proto.Message.InteractiveMessage.Footer.create({
-            'text': "⪛✰ Pinterest - Busquedas ✰⪜"
+            'text': "🔎 Pinterest - Busquedas"
           }),
           'header': proto.Message.InteractiveMessage.Header.create({
             'hasMediaAttachment': false
@@ -94,10 +99,7 @@ let handler = async (_0x10bd40, {
   });
 };
 handler.help = ["pinterest"];
-handler.tags = ["descargas"];
-handler.coin = 1;
-handler.group = true;
-handler.register = true
-handler.command = ['pinterest', 'pin'];
-
+handler.tags = ["buscador"];
+handler.register = false;
+handler.command = ['pinterest'];
 export default handler;
