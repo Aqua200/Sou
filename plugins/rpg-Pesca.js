@@ -13,7 +13,7 @@ let handler = async (m, { conn, isPrems }) => {
     let rsl = Math.floor(Math.random() * 500)
     cooldowns[m.sender] = Date.now()
     
-    let mensaje = `🎣 ${pesca.mensaje} *${toNum(rsl)}* ( *${rsl}* ) yenes 💴.`
+    let mensaje = `🎣 ${pesca.mensaje} *${toNum(rsl)}* yenes 💴.`
     await conn.sendFile(m.chat, pesca.imagen, 'pesca.jpg', mensaje, m)
     
     user.coin += rsl
@@ -53,6 +53,6 @@ const pescas = [
     { mensaje: "Encontraste una vieja bota en el agua, pero dentro había dinero. Obtienes", imagen: "https://qu.ax/iaBTC.jpeg" },
     { mensaje: "Atrapas un tiburón pequeño y ganas", imagen: "https://qu.ax/JZbAB.jpeg" },
     { mensaje: "Lograste cazar un pulpo y obtienes", imagen: "https://qu.ax/wHCHF.jpeg" },
-    { mensaje: "Pescaste una pezcado enorme y recibes", imagen: "https://qu.ax/tWPZE.jpeg" },
+    { mensaje: "Pescaste un pescado enorme y recibes", imagen: "https://qu.ax/tWPZE.jpeg" },
     { mensaje: "Sacaste un pez raro y ganas", imagen: "https://qu.ax/gxfON.jpeg" }
 ]
