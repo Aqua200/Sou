@@ -66,17 +66,6 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       chat.antiBot2 = isEnable
       break
 
-    case 'antitoxic': 
-    case 'antitoxicos':
-      if (m.isGroup) {
-        if (!(isAdmin || isOwner)) {
-          global.dfail('admin', m, conn);
-          throw false;
-        }
-      }
-      isEnable = chat.antitoxic = !chat.antitoxic;
-      break;
-
  case 'antifake':
     case 'antifakes':
     case 'antiarabes':
@@ -101,15 +90,15 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       chat.modoadmin = isEnable
       break
 
-  case 'autoread':
+ case 'autoread':
     case 'autoleer':
-    case 'leermensajes':
-     isAll = true
-     if (!isOwner) {
-     global.dfail('rowner', m, conn)
-      throw false
+    case 'autover':
+      isAll = true
+       if (!isROwner) {
+         global.dfail('rowner', m, conn)
+         throw false
       }
-      bot.autoread = isEnable
+      global.opts['autoread'] = isEnable
       break
 
   case 'antiver':
@@ -156,25 +145,6 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       }
       chat.audios = isEnable
       break
-
-    case 'antilink2':
-      if (m.isGroup) {
-        if (!(isAdmin || isOwner)) {
-          global.dfail('admin', m, conn);
-          throw false;
-        }
-      }
-      isEnable = chat.antiLink2 = !chat.antiLink2;
-      break;
-
-case 'autolevelup': case 'autonivel': case 'nivelautomatico':
-if (m.isGroup) {
-if (!(isAdmin || isOwner)) {
-global.dfail('admin', m, conn)
-throw false
-}}
-chat.autolevelup = isEnable          
-break
 
   case 'antiSpam':
     case 'antispam':
@@ -265,50 +235,26 @@ break
       }
       chat.antiLink = isEnable
       break
-
-      case 'nsfw':
-      case 'nsfw': case 'nsfwhot': case 'nsfwhorny':
-       if (m.isGroup) {
-         if (!(isAdmin || isOwner)) {
-           global.dfail('admin', m, conn)
-            throw false
-           }}
-    chat.nsfw = isEnable          
-    break
     default:
-default:
-  if (!/[01]/.test(command)) {
-    const imageUrl = 'https://qu.ax/uztyt.jpeg';  // URL de la imagen que deseas enviar
-    conn.sendMessage(m.chat, { 
-      image: { url: imageUrl },  // Aquí se agrega la imagen al mensaje
-      caption: `
-*[🍨] Funciones Solo Para Owner*
+      if (!/[01]/.test(command)) return conn.reply(m.chat, `
+*ゲ◜៹ Bot Creadores ៹◞ゲ*
 
-🜲 ${usedPrefix + command} antispam
-🜲 ${usedPrefix + command} antiprivado
-🜲 ${usedPrefix + command} subbots
-🜲 ${usedPrefix + command} status
-🜲 ${usedPrefix + command} restrict
+${usedPrefix + command} antispam
+${usedPrefix + command} antiprivado
+${usedPrefix + command} status
+${usedPrefix + command} restrict
 
-*[🎩] Funciones De Grupos*
+*ゲ◜៹ Bot Administrador ៹◞ゲ*
 
-➳ ${usedPrefix + command} welcome 
-➳ ${usedPrefix + command} autolevelup
-➳ ${usedPrefix + command} antibot
-➳ ${usedPrefix + command} antiver
-➳ ${usedPrefix + command} detect 
-➳ ${usedPrefix + command} delete
-➳ ${usedPrefix + command} modoadmin 
-➳ ${usedPrefix + command} antiarabes
-➳ ${usedPrefix + command} autoaceptar
-➳ ${usedPrefix + command} antilink
-➳ ${usedPrefix + command} antilink2`, 
-      
-    )
-
-    throw false
+${usedPrefix + command} welcome 
+${usedPrefix + command} antibot
+${usedPrefix + command} reaccion
+${usedPrefix + command} simi  
+${usedPrefix + command} modoadmin  
+${usedPrefix + command} antilink`, m)
+      throw false
   }
-  conn.reply(m.chat, `[🍨] La función *${type}* se *${isEnable ? 'activó' : 'desactivó'}* ${isAll ? 'para este Bot' : isUser ? '' : 'para este chat'}`, m)
+  conn.reply(m.chat, `🍭 La función *${type}* se *${isEnable ? 'activó' : 'desactivó'}* ${isAll ? 'para este Bot' : isUser ? '' : 'para este chat'}`, m)
 }
 
 handler.help = ['enable', 'disable']
