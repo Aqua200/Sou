@@ -297,11 +297,11 @@ break
 ➳ ${usedPrefix + command} antiarabes
 ➳ ${usedPrefix + command} autoaceptar
 ➳ ${usedPrefix + command} antilink
-➳ ${usedPrefix + command} antilink2`, m, rcanal)
+➳ ${usedPrefix + command} antilink2`, m)
 
       throw false
   }
-  conn.reply(m.chat, `[🍨] La función *${type}* se *${isEnable ? 'activó' : 'desactivó'}* ${isAll ? 'para este Bot' : isUser ? '' : 'para este chat'}`, m, rcanal)
+  conn.reply(m.chat, `[🍨] La función *${type}* se *${isEnable ? 'activó' : 'desactivó'}* ${isAll ? 'para este Bot' : isUser ? '' : 'para este chat'}`, m)
 }
 
 handler.help = ['enable', 'disable']
