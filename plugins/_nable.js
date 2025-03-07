@@ -1,5 +1,13 @@
 let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isROwner }) => {
 
+  // Definir mssg con los mensajes necesarios
+  let mssg = {
+    nable: 'Habilitado', // Mensaje cuando se habilita
+    disable: 'Deshabilitado', // Mensaje cuando se deshabilita
+    toBot: 'para el bot',
+    toGp: 'para el grupo'
+  };
+
   let isEnable = /true|enable|(turn)?on|1/i.test(command)
   let chat = global.db.data.chats[m.chat]
   let xx = '```'
@@ -7,6 +15,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
   let bot = global.db.data.settings[conn.user.jid] || {}
   let type = (args[0] || '').toLowerCase()
   let isAll = false, isUser = false
+
   switch (type) {
     case 'welcome':
     case 'bv':
@@ -22,29 +31,29 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       }
       chat.welcome = isEnable
       break
-      
-      case 'detect':
-      case 'detector':
-        if (!m.isGroup) {
-         if (!isOwner) {
-           global.dfail('group', m, conn)
+
+    case 'detect':
+    case 'detector':
+      if (!m.isGroup) {
+        if (!isOwner) {
+          global.dfail('group', m, conn)
           throw false
         }
-       } else if (!isAdmin) {
-         global.dfail('admin', m, conn)
-         throw false
-       }
-       chat.detect = isEnable
-     break
-    
+      } else if (!isAdmin) {
+        global.dfail('admin', m, conn)
+        throw false
+      }
+      chat.detect = isEnable
+      break
+
     case 'modoia':
       isAll = true;
       if (!(isROwner || isOwner)) {
         global.dfail('owner', m, conn);
         throw false;
       }
-      bot.modoia = isEnable;      
-      break;      
+      bot.modoia = isEnable;
+      break;
 
     case 'antidelete':
     case 'delete':
@@ -59,11 +68,12 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
 
     case 'document':
     case 'documento':
-    if (m.isGroup) {
+      if (m.isGroup) {
         if (!(isAdmin || isOwner)) return dfail('admin', m, conn)
       }
-    chat.useDocument = isEnable
-    break
+      chat.useDocument = isEnable
+      break
+
     case 'public':
     case 'publico':
       isAll = true
@@ -73,6 +83,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       }
       global.opts['self'] = !isEnable
       break
+
     case 'antilink':
     case 'antilinkwa':
     case 'antilinkwha':
@@ -84,9 +95,8 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       }
       chat.antiLink = isEnable
       break
-      
-      
-      case 'captcha':
+
+    case 'captcha':
       if (m.isGroup) {
         if (!(isAdmin || isOwner)) {
           global.dfail('admin', m, conn)
@@ -95,29 +105,30 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       }
       chat.captcha = isEnable
       break
-      
-      case 'nsfw':
-      case '+18':
-       if (m.isGroup) {
-         if (!(isAdmin || isOwner)) {
-           global.dfail('admin', m, conn)
-            throw false
-           }}
-    chat.nsfw = isEnable          
-    break
+
+    case 'nsfw':
+    case '+18':
+      if (m.isGroup) {
+        if (!(isAdmin || isOwner)) {
+          global.dfail('admin', m, conn)
+          throw false
+        }
+      }
+      chat.nsfw = isEnable
+      break
 
     case 'autolevelup':
-    isUser = true
-     user.autolevelup = isEnable
-     break
-     
-     case 'chatbot':
-     case 'autosimi':
-     case 'autosimsimi':
+      isUser = true
+      user.autolevelup = isEnable
+      break
+
+    case 'chatbot':
+    case 'autosimi':
+    case 'autosimsimi':
       isUser = true
       user.chatbot = isEnable
-     break
-     
+      break
+
     case 'restrict':
     case 'restringir':
       isAll = true
@@ -127,14 +138,17 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       }
       bot.restrict = isEnable
       break
+
     case 'modoadmin': case 'soloadmin': case 'modeadmin':
-if (m.isGroup) {
-if (!(isAdmin || isOwner)) {
-global.dfail('admin', m, conn)
-throw false
-}}
-chat.modoadmin = isEnable          
-break
+      if (m.isGroup) {
+        if (!(isAdmin || isOwner)) {
+          global.dfail('admin', m, conn)
+          throw false
+        }
+      }
+      chat.modoadmin = isEnable
+      break
+
     case 'onlypv':
     case 'onlydm':
     case 'onlymd':
@@ -144,10 +158,9 @@ break
         global.dfail('owner', m, conn)
         throw false
       }
-      //global.opts['solopv'] = isEnable
       bot.solopv = isEnable
       break
-      
+
     case 'gponly':
     case 'onlygp':
     case 'grouponly':
@@ -158,12 +171,10 @@ break
         global.dfail('owner', m, conn)
         throw false
       }
-      //global.opts['sologp'] = isEnable
       bot.sologp = isEnable
       break
-      
+
     default:
-      //if (!/[01]/.test(command)) return await conn.sendMessage(m.chat, listMessage, { quoted: m })
       if (!/[01]/.test(command)) return m.reply(`
 ☁️ \`໋≡ Lista de Opciones:\`
   乂 *ＡＤＭＩＮ*
@@ -193,11 +204,11 @@ ${xx}
 *${usedPrefix}off* ${xx}welcome${xx}
 `)
       throw false
-}
+  }
 
-m.reply(`
+  m.reply(`
 ✅ *${type.toUpperCase()}* *${isEnable ? `${mssg.nable}` : `${mssg.disable}`}* ${isAll ? `${mssg.toBot}` : isUser ? '' : `${mssg.toGp}`}
-`.trim()) 
+`.trim())
 
 }
 handler.help = ['en', 'dis'].map(v => v + 'able <option>')
