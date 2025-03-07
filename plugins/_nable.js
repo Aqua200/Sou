@@ -206,6 +206,36 @@ ${xx}
       throw false
   }
 
+  // Enviar la imagen junto con el mensaje
+  await conn.sendMessage(m.chat, { image: { url: 'https://qu.ax/iKouo.jpeg' }, caption: `
+☁️ \`໋≡ Lista de Opciones:\`
+  乂 *ＡＤＭＩＮ*
+${xx} -------------------------
+ • captcha
+ • welcome
+ • antilink
+ • detect 
+ • document
+ • nsfw
+ • modoadmin
+${xx}
+  乂 *ＵＳＥＲＳ*
+${xx} -------------------------
+ • autolevelup
+ • chatbot 
+${xx}
+  乂 *ＯＷＮＥＲ*
+ ${xx}-------------------------
+ • public
+ • modoia
+ • solopv
+ • sologp
+${xx}
+*📌 Ｅｊｅｍｐｌｏ :*
+*${usedPrefix}on* ${xx}welcome${xx}
+*${usedPrefix}off* ${xx}welcome${xx}
+  `.trim() });
+
   m.reply(`
 ✅ *${type.toUpperCase()}* *${isEnable ? `${mssg.nable}` : `${mssg.disable}`}* ${isAll ? `${mssg.toBot}` : isUser ? '' : `${mssg.toGp}`}
 `.trim())
