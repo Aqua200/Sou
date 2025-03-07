@@ -207,7 +207,7 @@ ${xx}
   }
 
   // Enviar la imagen junto con el mensaje
-  await conn.sendMessage(m.chat, { image: { url: 'https://qu.ax/iKouo.jpeg' }, caption: `
+  await conn.sendMessage(m.chat, { image: { url: 'https://qu.ax/uztyt.jpeg' }, caption: `
 ☁️ \`໋≡ Lista de Opciones:\`
   乂 *ＡＤＭＩＮ*
 ${xx} -------------------------
