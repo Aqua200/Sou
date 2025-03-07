@@ -277,6 +277,8 @@ break
     break
     default:
       if (!/[01]/.test(command)) return conn.reply(m.chat, `
+      const imageUrl = 'https://qu.ax/uztyt.jpeg';
+conn.sendMessage(m.chat, { image: { url: imageUrl }, caption: `
 *[🍨] Funciones Solo Para Owner*
 
 🜲 ${usedPrefix + command} antispam
