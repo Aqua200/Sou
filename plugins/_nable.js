@@ -303,7 +303,7 @@ default:
 ➳ ${usedPrefix + command} autoaceptar
 ➳ ${usedPrefix + command} antilink
 ➳ ${usedPrefix + command} antilink2`, 
-      m
+      
     )
 
     throw false
