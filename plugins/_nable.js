@@ -276,9 +276,12 @@ break
     chat.nsfw = isEnable          
     break
     default:
-      if (!/[01]/.test(command)) return conn.reply(m.chat, `
-      const imageUrl = 'https://qu.ax/uztyt.jpeg';
-conn.sendMessage(m.chat, { image: { url: imageUrl }, caption: `
+default:
+  if (!/[01]/.test(command)) {
+    const imageUrl = 'https://qu.ax/uztyt.jpeg';  // URL de la imagen que deseas enviar
+    conn.sendMessage(m.chat, { 
+      image: { url: imageUrl },  // Aquí se agrega la imagen al mensaje
+      caption: `
 *[🍨] Funciones Solo Para Owner*
 
 🜲 ${usedPrefix + command} antispam
@@ -299,9 +302,11 @@ conn.sendMessage(m.chat, { image: { url: imageUrl }, caption: `
 ➳ ${usedPrefix + command} antiarabes
 ➳ ${usedPrefix + command} autoaceptar
 ➳ ${usedPrefix + command} antilink
-➳ ${usedPrefix + command} antilink2`, m)
+➳ ${usedPrefix + command} antilink2`, 
+      m
+    )
 
-      throw false
+    throw false
   }
   conn.reply(m.chat, `[🍨] La función *${type}* se *${isEnable ? 'activó' : 'desactivó'}* ${isAll ? 'para este Bot' : isUser ? '' : 'para este chat'}`, m)
 }
