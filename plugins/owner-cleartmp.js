@@ -1,44 +1,35 @@
 import { tmpdir } from 'os'
-import { join } from 'path'
-import { readdirSync, statSync, unlinkSync, existsSync, rmSync } from 'fs'
+import path, { join, dirname } from 'path'
+import { fileURLToPath } from 'url'
+import {
+  readdirSync,
+  statSync,
+  unlinkSync,
+  existsSync
+} from 'fs'
 
-let handler = async (m, { conn, __dirname }) => {
-  try {
-    const tmp = [tmpdir(), join(__dirname, '../tmp')]
-    let archivosEliminados = 0
-    let carpetasEliminadas = 0
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
-    tmp.forEach(dirname => {
-      if (existsSync(dirname)) {
-        readdirSync(dirname).forEach(file => {
-          const filePath = join(dirname, file)
-          if (existsSync(filePath)) {
-            try {
-              const stats = statSync(filePath)
-              if (stats.isFile()) {
-                unlinkSync(filePath)
-                archivosEliminados++
-              } else if (stats.isDirectory()) {
-                rmSync(filePath, { recursive: true, force: true })
-                carpetasEliminadas++
-              }
-            } catch (err) {
-              console.error(`No se pudo eliminar: ${filePath} - ${err.message}`)
-            }
-          }
-        })
-      }
-    })
+let handler = async (m, { conn }) => { 
+  conn.reply(m.chat, `✅ Realizado, ya se han eliminado los archivos de la carpeta tmp`, m)
 
-    conn.reply(
-      m.chat,
-      `✅ Se han eliminado ${archivosEliminados} archivos y ${carpetasEliminadas} carpetas de la carpeta tmp`,
-      m
-    )
-  } catch (error) {
-    console.error(`Error en cleartmp: ${error.message}`)
-    conn.reply(m.chat, `⚠️ Ocurrió un error al limpiar la carpeta tmp`, m)
-  }
+  const tmp = [tmpdir(), join(__dirname, '../tmp')]
+  const filename = []
+
+  tmp.forEach(dirname => {
+    if (existsSync(dirname)) {
+      readdirSync(dirname).forEach(file => filename.push(join(dirname, file)))
+    }
+  })
+
+  filename.forEach(file => {
+    try {
+      const stats = statSync(file)
+      if (stats.isFile()) unlinkSync(file)
+    } catch (e) {
+      console.error(`Error al eliminar ${file}:`, e)
+    }
+  })
 }
 
 handler.help = ['cleartmp']
